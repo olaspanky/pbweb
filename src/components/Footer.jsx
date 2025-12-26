@@ -75,7 +75,7 @@ export default function Footer() {
               <span className="text-grey-0/60">•</span>
               <Link href="#" className="hover:underline transition">Terms</Link>
               <span className="text-grey-0/60">•</span>
-              <p>All rights reserved.</p>
+              <p>All rights reserved</p>
             </div>
           </div>
 
