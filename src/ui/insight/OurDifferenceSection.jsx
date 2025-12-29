@@ -1,6 +1,8 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Search, ChevronDown } from 'lucide-react';
+import WhitepapersMatter from '@/components/WhitepapersMatter';
+
 
 const TestimonialCard = ({ text, name, company }) => (
   <div className="bg-white p-6 rounded-lg border border-gray-200 w-96 flex-shrink-0">
@@ -385,6 +387,8 @@ export default function ReportsPage() {
         <>
           {/* Top Report Section */}
           <section className="max-w-7xl mx-auto px-4 py-12">
+
+            <WhitepapersMatter/>
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-3xl font-bold text-gray-900">Top Report Section</h2>
             </div>
