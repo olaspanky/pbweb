@@ -81,14 +81,14 @@ const WhitepapersMatter = () => {
       </motion.h2>
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-1 lg:gap-3">
         {whitepaperItems.map((item, index) => (
-          <motion.div
-            key={item.id}
-            className="flex flex-col gap-12 mb-16  border-r-gray-300 border-r-1 p-2"
-            variants={cardVariants}
-            initial="hidden"
-            animate={isSectionInView ? 'visible' : 'hidden'}
-            custom={index} // Stagger index for each card
-          >
+         <motion.div
+  key={item.id}
+  className="flex flex-col gap-12 mb-16 pr-2 border-r border-gray-300 md:[&:nth-child(3n)]:border-r-0"
+  variants={cardVariants}
+  initial="hidden"
+  animate={isSectionInView ? 'visible' : 'hidden'}
+  custom={index}
+>
             <div>
               <h2 className="text-xl font-bold text-gray-900">{item.title}</h2>
 
