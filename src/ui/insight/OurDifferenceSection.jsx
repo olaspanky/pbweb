@@ -390,7 +390,7 @@ export default function ReportsPage() {
 
             <WhitepapersMatter/>
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-3xl font-bold text-gray-900">Top Report Section</h2>
+              <h2 className="text-3xl font-bold text-gray-900">All</h2>
             </div>
             
             <p className="text-gray-600 mb-8 leading-relaxed">
