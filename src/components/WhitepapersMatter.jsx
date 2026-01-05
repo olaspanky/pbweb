@@ -24,7 +24,7 @@ const WhitepapersMatter = () => {
     {
       id: 3, // Fixed duplicate ID
       title: 'Emerging Markets-Focused',
-      imageUrl: '/images/assets/ww3.png',
+      imageUrl: '/images/assets/wl.png',
       imageAlt: 'Whitepapers importance illustration',
       description:
         'Understand how local innovation intersects with global investment opportunities.',

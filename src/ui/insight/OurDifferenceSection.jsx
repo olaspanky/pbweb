@@ -405,7 +405,7 @@ export default function ReportsPage() {
                     <div className="p-4">
                       <p className="text-sm text-gray-600 mb-2 line-clamp-2">{report.description}</p>
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">{report.category}</span>
+                        <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">{report.category}</span>
                         {report.isFree && <span className="text-xs text-green-600 font-semibold">FREE</span>}
                       </div>
                       {report.downloadUrl && (
@@ -413,7 +413,7 @@ export default function ReportsPage() {
                           href={report.downloadUrl} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="block w-full text-center bg-blue-600 text-white py-2 rounded text-sm hover:bg-blue-700 transition-colors"
+                          className="block w-full text-center bg-green-600 text-white py-2 rounded text-sm hover:bg-blue-700 transition-colors"
                         >
                           Download
                         </a>
@@ -485,15 +485,15 @@ export default function ReportsPage() {
                     <div className="p-4">
                       <p className="text-sm text-gray-600 mb-2 line-clamp-2">{report.description}</p>
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">{report.category}</span>
-                        {!report.isFree && <span className="text-xs text-purple-600 font-semibold">$10</span>}
+                        <span className="text-xs bg-purple-100 text-green-800 px-2 py-1 rounded">{report.category}</span>
+                        {!report.isFree && <span className="text-xs text-green-600 font-semibold">$10</span>}
                       </div>
                       {report.downloadUrl && (
                         <a 
                           href={report.downloadUrl} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="block w-full text-center bg-purple-600 text-white py-2 rounded text-sm hover:bg-purple-700 transition-colors"
+                          className="block w-full text-center bg-green-600 text-white py-2 rounded text-sm hover:bg-purple-700 transition-colors"
                         >
                           {report.isFree ? 'Download' : 'Purchase & Download'}
                         </a>
