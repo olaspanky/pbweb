@@ -62,7 +62,7 @@ The Voice of Emerging Market Healthcare         </p>
           <p className="text-base sm:text-lg md:text-lg text-grey-0 max-w-2xl">
 Listen to the market and engage with purpose.         </p>
 
-          <Button content={{ to: "/", label: "Request A Demo" }} className="uppercase w-48" />
+          <Button content={{ to: "/demo", label: "Request A Demo" }} className="uppercase w-48" />
         </div>
       </div>
     </header>

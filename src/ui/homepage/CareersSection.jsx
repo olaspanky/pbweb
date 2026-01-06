@@ -37,7 +37,7 @@ export default function CareersSection() {
         </p>
 
         <Button
-          content={{ label: "Apply Today", to: "/contact" }}
+          content={{ label: "Apply Today", to: "/nothiring" }}
           className="uppercase mt-2"
         />
       </div>

@@ -63,7 +63,7 @@ export default function HeroSection() {
             View the complete picture of your brand's journey at the pharmacy counter.
           </p>
 
-          <Button content={{ to: "/", label: "Request A Demo" }} className="uppercase w-48" />
+          <Button content={{ to: "/demo", label: "Request A Demo" }} className="uppercase w-48" />
         </div>
       </div>
     </header>

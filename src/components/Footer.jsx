@@ -12,26 +12,31 @@ export default function Footer() {
           {/* Column 4 Navigation Columns */}
           <div className="flex flex-col gap-4 text-grey-0 font-medium text-sm md:text-base">
             <Link href="/about" className="hover:underline transition">About Us</Link>
-            <Link href="/versus" className="hover:underline transition">Versus</Link>
-            <Link href="/invisio" className="hover:underline transition">Inviso</Link>
-            <Link href="/sonus" className="hover:underline transition">Sonus</Link>
-            <Link href="/contact" className="hover:underline transition">Contact Us</Link>
-            <Link href="/career" className="hover:underline transition">Career</Link>
+           
+            <Link href="/contact" className="hover:underline transition text-gray-400">Contact Us</Link>
+            <Link href="/career" className="hover:underline transition text-gray-400">Careers</Link>
           </div>
 
-          <div className="flex flex-col gap-4 text-grey-0 font-medium text-sm md:text-base">
+          <div className="flex flex-col gap-4 text-grey-50 font-medium text-sm md:text-base">
             <Link href="/versus" className="hover:underline transition">Products</Link>
             {/* Add more product links here if needed */}
+             <Link href="/versus" className="hover:underline transition  text-gray-400">Versus</Link>
+            <Link href="/invisio" className="hover:underline transition text-gray-400">Inviso</Link>
+            <Link href="/sonus" className="hover:underline transition text-gray-400">Sonus</Link>
           </div>
 
-          <div className="flex flex-col gap-4 text-grey-0 font-medium text-sm md:text-base">
-            <Link href="/solutions" className="hover:underline transition">Solutions</Link>
-            {/* Add more solution links here if needed */}
-          </div>
+
 
           <div className="flex flex-col gap-4 text-grey-0 font-medium text-sm md:text-base">
             <Link href="/insights" className="hover:underline transition">Insights</Link>
+             <Link href="/versus" className="hover:underline transition text-gray-400">Whitepaper</Link>
+            <Link href="/invisio" className="hover:underline transition text-gray-400">Market Intelligence Report</Link>
             {/* Add more testimonial links here if needed */}
+          </div>
+
+           <div className="flex flex-col gap-4 text-grey-0 font-medium text-sm md:text-base">
+            <Link href="/solutions" className="hover:underline transition">Solutions</Link>
+            {/* Add more solution links here if needed */}
           </div>
 
           {/* Contact & Socials Column */}

@@ -91,7 +91,7 @@ const ReportSearchBar = ({ onSearch, onSort, onCategoryFilter, categories }) => 
   };
 
   return (
-    <div className="px-4 py-6 bg-gray-50">
+    <div className="px-4 py-6 z-99 mt-[-20] ">
       <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-sm">
         <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center p-7 shadow-lg rounded-xl">
           <div className="flex-1 relative">
@@ -192,7 +192,6 @@ const ReportCardCover = ({ report }) => {
         style={{ backgroundImage: `url(${report.backgroundImage})` }}
       >
         <div className="absolute inset-0 bg-black/50"></div>
-        <h3 className="relative text-white font-bold text-lg text-center z-10">{report.title}</h3>
       </div>
     );
   }
@@ -358,7 +357,7 @@ export default function ReportsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       <ReportSearchBar 
         onSearch={handleSearch}
         onSort={handleSort}

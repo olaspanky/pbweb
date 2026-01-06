@@ -52,8 +52,7 @@ export default function HeroSection() {
       <div className="relative z-20 h-full flex items-center pt-24 lg:pt-48">
         <div className="max-w-[1440px] px-6 lg:px-18 mx-auto w-full flex flex-col gap-6 md:gap-8">
           <h1 className="text-grey-0 uppercase text-3xl sm:text-5xl lg:text-6xl w-full sm:w-[85%] md:w-[98%] font-medium leading-tight">
-          Become a Partner with PBR Life Sciences
-          </h1>
+BECOME A DATA PARTNER WITH PBR LIFE SCIENCES          </h1>
 
           <p className="text-base sm:text-lg md:text-md text-grey-0 max-w-7xl">
 Join a growing network of forward-thinking <span className="text-brand-green">pharmacies in Nigeria, Ghana and Kenya sharing anonymized data </span>to drive real-world insights and improve public health outcomes across Africa and beyond         </p>
