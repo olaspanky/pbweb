@@ -1,20 +1,60 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from 'react';
 import { Search, ChevronDown } from 'lucide-react';
-import WhitepapersMatter from '@/components/WhitepapersMatter';
+import tst from "../../../public/images/assets/tst.png";
+import Image from 'next/image';
 
+const NewTestimonialCard = ({ rating = 4, text, name, company }) => (
+  <div className="bg-white rounded-3xl shadow-xl overflow-hidden max-w-md mx-auto hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+    
+    {/* Top content */}
+    <div className="p-10 flex-1 relative z-10">
+      <div className="flex items-center gap-1 mb-6">
+        {[...Array(rating)].map((_, i) => (
+          <svg
+            key={`filled-${i}`}
+            className="w-7 h-7 text-green-500"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+        ))}
 
-const TestimonialCard = ({ text, name, company }) => (
-  <div className="bg-white p-6 rounded-lg border border-gray-200 w-96 flex-shrink-0">
-    <p className="text-sm text-gray-500 mb-4">Verified Purchase</p>
-    <p className="text-gray-700 mb-6 leading-relaxed">{text}</p>
-    <div className="flex items-center gap-3">
-      <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-        <span className="text-gray-500 text-sm">👤</span>
+        {[...Array(5 - rating)].map((_, i) => (
+          <svg
+            key={`empty-${i}`}
+            className="w-7 h-7 text-gray-300"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+        ))}
+
+        <span className="ml-3 text-2xl font-bold text-gray-800">
+          {rating}/5
+        </span>
       </div>
-      <div>
-        <p className="font-semibold text-gray-900">{name}</p>
-        <p className="text-sm text-gray-500">{company}</p>
+
+      <p className="text-gray-700 text-lg leading-relaxed">{text}</p>
+    </div>
+
+    {/* Image section */}
+    <div className="relative w-full">
+      {/* Background image */}
+      <Image
+        src={tst}
+        alt="Mesh"
+        width={800}
+        height={100}
+        className="w-full h-auto"
+      />
+
+      {/* Overlay content */}
+      <div className="absolute bottom-6 left-8 z-10 text-white p-5">
+        <p className="text-2xl font-bold">{name}</p>
+        <p className="text-xl opacity-90">{company}</p>
       </div>
     </div>
   </div>
@@ -51,10 +91,9 @@ const ReportSearchBar = ({ onSearch, onSort, onCategoryFilter, categories }) => 
   };
 
   return (
-    <div className="px-4 py-6">
+    <div className="px-4 py-6 bg-gray-50">
       <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-sm">
         <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center p-7 shadow-lg rounded-xl">
-          {/* Search Input */}
           <div className="flex-1 relative">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
               <Search className="h-5 w-5 text-gray-500" />
@@ -69,7 +108,6 @@ const ReportSearchBar = ({ onSearch, onSort, onCategoryFilter, categories }) => 
             />
           </div>
 
-          {/* Sort by */}
           <div className="relative">
             <button 
               onClick={() => {
@@ -98,7 +136,6 @@ const ReportSearchBar = ({ onSearch, onSort, onCategoryFilter, categories }) => 
             )}
           </div>
 
-          {/* Categories */}
           <div className="relative">
             <button 
               onClick={() => {
@@ -135,7 +172,6 @@ const ReportSearchBar = ({ onSearch, onSort, onCategoryFilter, categories }) => 
             )}
           </div>
 
-          {/* Search Button */}
           <button 
             onClick={handleSearch}
             className="px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-medium rounded-xl transition-colors shadow-md hover:shadow-lg whitespace-nowrap"
@@ -148,7 +184,6 @@ const ReportSearchBar = ({ onSearch, onSort, onCategoryFilter, categories }) => 
   );
 };
 
-// Reusable Report Card Cover with background image support
 const ReportCardCover = ({ report }) => {
   if (report.backgroundImage) {
     return (
@@ -157,8 +192,7 @@ const ReportCardCover = ({ report }) => {
         style={{ backgroundImage: `url(${report.backgroundImage})` }}
       >
         <div className="absolute inset-0 bg-black/50"></div>
-        <h3 className="relative text-white font-bold text-lg text-center z-10">
-        </h3>
+        <h3 className="relative text-white font-bold text-lg text-center z-10">{report.title}</h3>
       </div>
     );
   }
@@ -178,7 +212,6 @@ const ReportCardCover = ({ report }) => {
   );
 };
 
-// Skeleton Card for report loading
 const ReportCardSkeleton = () => (
   <div className="rounded-lg overflow-hidden shadow-md bg-white animate-pulse">
     <div className="aspect-[3/4] bg-gray-300"></div>
@@ -195,7 +228,6 @@ const ReportCardSkeleton = () => (
   </div>
 );
 
-// Skeleton for section header
 const SectionHeaderSkeleton = () => (
   <div className="space-y-4 animate-pulse">
     <div className="h-8 bg-gray-300 rounded w-64"></div>
@@ -301,7 +333,7 @@ export default function ReportsPage() {
     return { topReports, whitepapers, marketReports };
   };
 
-  const { topReports, whitepapers, marketReports } = categorizeReports();
+  const { whitepapers, marketReports } = categorizeReports();
 
   const clearFilters = () => {
     setSearchQuery('');
@@ -326,7 +358,7 @@ export default function ReportsPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50">
       <ReportSearchBar 
         onSearch={handleSearch}
         onSort={handleSort}
@@ -350,89 +382,26 @@ export default function ReportsPage() {
         </div>
       )}
 
-      {/* Loading State with Skeleton Loaders */}
       {loading ? (
         <>
-          {/* Top Report Section Skeleton */}
           <section className="max-w-7xl mx-auto px-4 py-12">
             <SectionHeaderSkeleton />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-              {[...Array(4)].map((_, i) => (
-                <ReportCardSkeleton key={i} />
-              ))}
+              {[...Array(4)].map((_, i) => <ReportCardSkeleton key={i} />)}
             </div>
           </section>
-
-          {/* Whitepaper Section Skeleton */}
           <section className="max-w-7xl mx-auto px-4 py-12">
             <SectionHeaderSkeleton />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-              {[...Array(4)].map((_, i) => (
-                <ReportCardSkeleton key={i} />
-              ))}
-            </div>
-          </section>
-
-          {/* Market Reports Section Skeleton */}
-          <section className="max-w-7xl mx-auto px-4 py-12">
-            <SectionHeaderSkeleton />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-              {[...Array(4)].map((_, i) => (
-                <ReportCardSkeleton key={i} />
-              ))}
+              {[...Array(4)].map((_, i) => <ReportCardSkeleton key={i} />)}
             </div>
           </section>
         </>
       ) : (
         <>
-          {/* Top Report Section */}
-          <section className="max-w-7xl mx-auto px-4 py-12">
-
-            <WhitepapersMatter/>
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-3xl font-bold text-gray-900">All</h2>
-            </div>
-            
-            <p className="text-gray-600 mb-8 leading-relaxed">
-              Explore our collection of free whitepapers and paid market intelligence reports covering the latest trends, analyses, and forecasts in the pharmaceutical and life sciences industry.
-            </p>
-
-            {topReports.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {topReports.map((report) => (
-                  <div key={report._id} className="rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg transition-shadow">
-                    <ReportCardCover report={report} />
-                    <div className="p-4">
-                      <p className="text-sm text-gray-600 mb-2 line-clamp-2">{report.description}</p>
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">{report.category}</span>
-                        {report.isFree && <span className="text-xs text-green-600 font-semibold">FREE</span>}
-                      </div>
-                      {report.downloadUrl && (
-                        <a 
-                          href={report.downloadUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="block w-full text-center bg-green-600 text-white py-2 rounded text-sm hover:bg-blue-700 transition-colors"
-                        >
-                          Download
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-gray-500 text-center py-8">No reports found matching your criteria.</p>
-            )}
-          </section>
-
           {/* Whitepaper Section */}
           <section className="max-w-7xl mx-auto px-4 py-12">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-3xl font-bold text-gray-900">Whitepaper Section</h2>
-            </div>
-            
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Whitepaper Section</h2>
             <p className="text-gray-600 mb-8 leading-relaxed">
               Access our free whitepapers to stay informed on critical industry topics.
             </p>
@@ -463,18 +432,15 @@ export default function ReportsPage() {
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 text-center py-8">No whitepapers found matching your criteria.</p>
+              <p className="text-gray-500 text-center py-8">No whitepapers found.</p>
             )}
           </section>
 
           {/* Market Intelligence Reports Section */}
           <section className="max-w-7xl mx-auto px-4 py-12">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-3xl font-bold text-gray-900">Market Intelligence Reports Section</h2>
-            </div>
-            
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Market Intelligence Reports Section</h2>
             <p className="text-gray-600 mb-8 leading-relaxed">
-              Our premium Market Intelligence Reports offer in-depth analyses for only $10 each.
+              Our premium Market Intelligence Reports offer in-depth analysis.
             </p>
 
             {marketReports.length > 0 ? (
@@ -485,7 +451,7 @@ export default function ReportsPage() {
                     <div className="p-4">
                       <p className="text-sm text-gray-600 mb-2 line-clamp-2">{report.description}</p>
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs bg-purple-100 text-green-800 px-2 py-1 rounded">{report.category}</span>
+                        <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">{report.category}</span>
                         {!report.isFree && <span className="text-xs text-green-600 font-semibold">$10</span>}
                       </div>
                       {report.downloadUrl && (
@@ -503,109 +469,39 @@ export default function ReportsPage() {
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 text-center py-8">No market intelligence reports found.</p>
+              <p className="text-gray-500 text-center py-8">No market reports found.</p>
             )}
           </section>
         </>
       )}
 
-      {/* Testimonials Section - remains visible even during loading */}
-      <section className="max-w-7xl mx-auto px-4 py-16 overflow-hidden">
-        <div className="text-center mb-4">
+      {/* Static Testimonials Section - No Scrolling */}
+      <section className="max-w-7xl mx-auto px-4 py-20 bg-[#FAFBFF]">
+        <div className="text-center mb-16">
           <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">TESTIMONIALS</p>
           <h2 className="text-4xl font-bold text-gray-900">What our customers say</h2>
         </div>
 
-        <div className="relative mt-12 mb-8">
-          <div className="flex gap-8 animate-scroll-right">
-            {[...Array(2)].map((_, idx) => (
-            <React.Fragment key={idx}>
-  <TestimonialCard
-    text="PBR exceeded our expectations by providing credible, data-driven insights into therapeutics—offering a comprehensive understanding of market dynamics that has fundamentally transformed our decision-making process."
-    name="Chishamiso Mawoyo"
-    company="Senior Investment Officer, IFC"
-  />
+        {/* Exactly 3 static testimonials in a responsive grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+          <NewTestimonialCard
+            rating={4}
+            text="Their detailed insights into state-level dynamics and financial trends provided crucial information that streamlined our project on maternal and neonatal products in Nigeria, significantly enhancing our strategic planning."
+            name="olaa"
+            company="pbr"          />
 
-  <TestimonialCard
-    text="Their detailed insights into state-level dynamics and financial trends provided crucial information that streamlined our project on maternal and neonatal products in Nigeria, significantly enhancing our strategic planning."
-    name="Azhee Akinrin"
-    company="Consultant, Global Health and Development, Market Access Africa"
-  />
+          <NewTestimonialCard
+            rating={5}
+            text="PBR exceeded our expectations by providing credible, data-driven insights into therapeutics—offering a comprehensive understanding of market dynamics that has fundamentally transformed our decision-making process."
+          name="olaa"
+            company="pbr"  />
 
-  <TestimonialCard
-    text="The Versus platform delivered substantial time and cost savings, enabling us to benchmark strategies effectively and navigate regulatory challenges with greater confidence."
-    name="Adeyanju Adedamola"
-    company="Merit Healthcare"
-  />
-
-  <TestimonialCard
-    text="Partnering with PBR Life Sciences on an advanced pricing modeling project was a game-changer for Sanofi. By leveraging real-world pharmacy sales data, we developed a data-driven pricing strategy that not only boosted profitability but also ensured broader patient access to essential medicines."
-    name="Tolulope Jagun"
-    company="Ex Sanofi Nigeria – Country Revenue and Pricing Manager & Pricing Project Lead"
-  />
-
-  <TestimonialCard
-    text="PBR's data solutions empowered us to make strategic decisions that directly impacted product launches and market segmentation. By providing detailed SKU analysis and granular market insights, PBR enabled us to successfully launch a new product in 2024. The business planning workshop further enriched our approach, offering fresh perspectives on brand penetration and competitive benchmarking that helped streamline product selection and channel prioritization."
-    name="Yimika Oguns"
-    company="Emzor"
-  />
-</React.Fragment>
-
-            ))}
-          </div>
+          <NewTestimonialCard
+            rating={4}
+            text="The Versus platform delivered substantial time and cost savings, enabling us to benchmark strategies effectively and navigate regulatory challenges with greater confidence."
+          name="olaa"
+            company="pbr"  />
         </div>
-
-        <div className="relative">
-          <div className="flex gap-8 animate-scroll-left">
-            {[...Array(2)].map((_, idx) => (
-             <React.Fragment key={idx}>
-  <TestimonialCard
-    text="PBR exceeded our expectations by providing credible, data-driven insights into therapeutics—offering a comprehensive understanding of market dynamics that has fundamentally transformed our decision-making process."
-    name="Chishamiso Mawoyo"
-    company="Senior Investment Officer, IFC"
-  />
-
-  <TestimonialCard
-    text="Their detailed insights into state-level dynamics and financial trends provided crucial information that streamlined our project on maternal and neonatal products in Nigeria, significantly enhancing our strategic planning."
-    name="Azhee Akinrin"
-    company="Consultant, Global Health and Development, Market Access Africa"
-  />
-
-  <TestimonialCard
-    text="The Versus platform delivered substantial time and cost savings, enabling us to benchmark strategies effectively and navigate regulatory challenges with greater confidence."
-    name="Adeyanju Adedamola"
-    company="Merit Healthcare"
-  />
-
-  <TestimonialCard
-    text="Partnering with PBR Life Sciences on an advanced pricing modeling project was a game-changer for Sanofi. By leveraging real-world pharmacy sales data, we developed a data-driven pricing strategy that not only boosted profitability but also ensured broader patient access to essential medicines."
-    name="Tolulope Jagun"
-    company="Ex Sanofi Nigeria – Country Revenue and Pricing Manager & Pricing Project Lead"
-  />
-
-  <TestimonialCard
-    text="PBR's data solutions empowered us to make strategic decisions that directly impacted product launches and market segmentation. By providing detailed SKU analysis and granular market insights, PBR enabled us to successfully launch a new product in 2024. The business planning workshop further enriched our approach, offering fresh perspectives on brand penetration and competitive benchmarking that helped streamline product selection and channel prioritization."
-    name="Yimika Oguns"
-    company="Emzor"
-  />
-</React.Fragment>
-
-            ))}
-          </div>
-        </div>
-
-        <style jsx>{`
-          @keyframes scroll-right {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          @keyframes scroll-left {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-          }
-          .animate-scroll-right { animation: scroll-right 40s linear infinite; }
-          .animate-scroll-left { animation: scroll-left 40s linear infinite; }
-        `}</style>
       </section>
     </div>
   );

@@ -14,7 +14,7 @@ const heroImages = [HeroImage1];
 export default function HeroSection() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
-    [Autoplay({ delay: 5000, stopOnInteraction: false })]
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
   return (

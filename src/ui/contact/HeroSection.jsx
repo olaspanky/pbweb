@@ -36,7 +36,7 @@ const countries = [
 export default function HeroSection() {
   const [emblaRef] = useEmblaCarousel(
     { loop: true },
-    [Autoplay({ delay: 5000, stopOnInteraction: false })]
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
   const [formData, setFormData] = useState({
