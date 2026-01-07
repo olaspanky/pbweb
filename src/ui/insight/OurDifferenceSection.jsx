@@ -53,8 +53,8 @@ const NewTestimonialCard = ({ rating = 4, text, name, company }) => (
 
       {/* Overlay content */}
       <div className="absolute bottom-6 left-8 z-10 text-white p-5">
-        <p className="text-2xl font-bold">{name}</p>
-        <p className="text-xl opacity-90">{company}</p>
+        <p className="text-xl font-bold">{name}</p>
+        <p className="text-md opacity-90">{company}</p>
       </div>
     </div>
   </div>
@@ -486,20 +486,20 @@ export default function ReportsPage() {
           <NewTestimonialCard
             rating={4}
             text="Their detailed insights into state-level dynamics and financial trends provided crucial information that streamlined our project on maternal and neonatal products in Nigeria, significantly enhancing our strategic planning."
-            name="olaa"
-            company="pbr"          />
+            name="Azhee Akinrin"
+            company="consultant, Global Health and Development, Market Access Africa"          />
 
           <NewTestimonialCard
             rating={5}
             text="PBR exceeded our expectations by providing credible, data-driven insights into therapeutics—offering a comprehensive understanding of market dynamics that has fundamentally transformed our decision-making process."
-          name="olaa"
-            company="pbr"  />
+          name="Chishamiso Mawoyo"
+            company="Senior Investment Officer, IFC"  />
 
           <NewTestimonialCard
             rating={4}
             text="The Versus platform delivered substantial time and cost savings, enabling us to benchmark strategies effectively and navigate regulatory challenges with greater confidence."
-          name="olaa"
-            company="pbr"  />
+          name="Adeyanju Adedamola"
+            company="Merit Healthcare"  />
         </div>
       </section>
     </div>
