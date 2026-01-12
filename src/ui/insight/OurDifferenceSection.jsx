@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Search, ChevronDown } from 'lucide-react';
 import tst from "../../../public/images/assets/tst.png";
 import Image from 'next/image';
+import WhitepapersMatter from '@/components/WhitepapersMatter';
 
 const NewTestimonialCard = ({ rating = 4, text, name, company }) => (
   <div className="bg-white rounded-3xl shadow-xl overflow-hidden max-w-md mx-auto hover:shadow-2xl transition-shadow duration-300 flex flex-col">
@@ -398,6 +399,8 @@ export default function ReportsPage() {
         </>
       ) : (
         <>
+
+        <WhitepapersMatter />
           {/* Whitepaper Section */}
           <section className="max-w-7xl mx-auto px-4 py-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Whitepaper Section</h2>
