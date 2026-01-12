@@ -11,13 +11,7 @@ const Testimonial = () => {
 
       <div className="relative flex items-center justify-center gap-4 md:gap-8">
         {/* Left Arrow - hidden on very small screens */}
-        <button
-          className="hidden sm:flex flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full 
-                     bg-blue-50 hover:bg-blue-100 items-center justify-center transition-colors"
-          aria-label="Previous testimonial"
-        >
-          <ChevronLeft className="w-6 h-6 text-blue-600" />
-        </button>
+     
 
         {/* Main Content Card */}
         <div
@@ -61,13 +55,7 @@ const Testimonial = () => {
         </div>
 
         {/* Right Arrow - hidden on very small screens */}
-        <button
-          className="hidden sm:flex flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full 
-                     bg-blue-600 hover:bg-blue-700 items-center justify-center transition-colors"
-          aria-label="Next testimonial"
-        >
-          <ChevronRight className="w-6 h-6 text-white" />
-        </button>
+      
       </div>
     </section>
   );
