@@ -9,7 +9,7 @@ export default function OurDifferenceSection() {
 return ( 
 <div className="flex flex-col">
 <section id="difference" className="py-5 sm:py-12 "> <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 max-w-[1440px] px-6 sm:px-12 md:px-16 mx-auto">
-{/* Image */} <div className="w-1/2 rounded-xl overflow-hidden">
+{/* Image */} <div className="lg:w-1/2 rounded-xl overflow-hidden">
         <VideoPlayer
           src="/videos/sn.mp4"
           className="w-full h-full object-cover rounded-xl"
