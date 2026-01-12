@@ -51,17 +51,20 @@ export default function HeroSection() {
 
       {/* Hero Content - Now truly centered */}
       <div className="relative z-20 h-full flex items-center">
-        <div className="max-w-[1440px] px-6 lg:px-18 mx-auto w-full flex flex-col gap-6 md:gap-3">
+        <div className="max-w-[1440px] px-6 lg:px-18 mx-auto w-full flex flex-col gap-9 md:gap-9">
           <h1 className="text-grey-0 uppercase text-3xl sm:text-5xl lg:text-6xl w-full sm:w-[85%] md:w-[70%] font-medium leading-tight">
             VERSUS<sup className="text-xl sm:text-2xl">TM</sup>
           </h1>
 
-          <p className="text-base sm:text-lg md:text-2xl text-grey-0 max-w-2xl">
+<div className="flex flex-col gap-3">
+<p className="text-base sm:text-lg md:text-2xl text-grey-0 max-w-2xl">
             Real-World Pharmacy Performance
           </p>
           <p className="text-base sm:text-lg md:text-lg text-grey-0 max-w-2xl">
             View the complete picture of your brand's journey at the pharmacy counter.
           </p>
+</div>
+          
 
           <Button content={{ to: "/demo", label: "Request A Demo" }} className="uppercase w-48" />
         </div>
