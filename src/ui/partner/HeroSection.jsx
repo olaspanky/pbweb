@@ -55,13 +55,13 @@ export default function HeroSection() {
 BECOME A DATA PARTNER WITH PBR LIFE SCIENCES          </h1>
 
           <p className="text-base sm:text-lg md:text-md text-grey-0 max-w-5xl">
-Join a growing network of forward-thinking <span className="text-brand-green">pharmacies in Nigeria, Ghana and Kenya sharing anonymized data </span>to drive real-world insights and improve public health outcomes across Africa and beyond         </p>
+Join a growing network of forward-thinking pharmacies in <span className="text-sky-500 font-extrabold ">  Nigeria, </span> <span className="text-brand-green font-extrabold">  Ghana, </span> <span className="text-brand-gold font-extrabold">  Kenya </span>sharing anonymized data to drive real-world insights and improve public health outcomes across Africa and beyond         </p>
 
        
 
  <div className="flex flex-wrap gap-5 items-center  " >
       {/* Solid Blue Button */}
-      <button className="px-8 py-3 bg-sky-500 text-white font-semibold rounded-lg hover:bg-sky-600 transition-colors duration-200 shadow-sm">
+      <button className="px-8 py-3 bg-sky-500 text-xl text-white font-semibold rounded-lg hover:bg-sky-600 transition-colors duration-200 shadow-sm">
         GET IN TOUCH
       </button>
 

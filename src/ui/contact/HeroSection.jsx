@@ -311,7 +311,7 @@ export default function ContactFormSection() {
         <div className="w-full max-w-xl">
           <div className="text-left mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Get in touch with Us
+              GET IN TOUCH with Us
             </h1>
             <p className="text-lg text-blue-100">
               Kick-start your business planning with real-world data and market insight today
