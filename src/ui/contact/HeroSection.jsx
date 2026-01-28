@@ -76,13 +76,11 @@ export default function ContactFormSection() {
   const [searchTerm, setSearchTerm] = useState('');
   const dropdownRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const formRef = useRef(null);
 
   // Load Zoho tracking scripts
   useEffect(() => {
     // Load SalesIQ widget
     const loadZohoSalesIQ = () => {
-      // Check if script already exists
       if (document.getElementById('zsiqscript')) return;
       
       const script = document.createElement('script');
@@ -91,7 +89,6 @@ export default function ContactFormSection() {
       script.defer = true;
       script.src = 'https://salesiq.zoho.com/widget';
       
-      // Initialize $zoho object
       window.$zoho = window.$zoho || {};
       window.$zoho.salesiq = window.$zoho.salesiq || {
         widgetcode: 'siq41258c3cb2e1c0b1f7d16f7dedd532bfca2050e92ced5e33f49f4d17b7992720',
@@ -104,7 +101,6 @@ export default function ContactFormSection() {
 
     // Load Analytics script
     const loadAnalyticsScript = () => {
-      // Check if script already exists
       if (document.getElementById('wf_anal')) return;
       
       const script = document.createElement('script');
@@ -113,11 +109,9 @@ export default function ContactFormSection() {
       document.body.appendChild(script);
     };
 
-    // Load both scripts
     loadZohoSalesIQ();
     loadAnalyticsScript();
 
-    // Initialize $zoho object if not exists
     if (!window.$zoho) {
       window.$zoho = {};
     }
@@ -137,7 +131,6 @@ export default function ContactFormSection() {
     }
 
     return () => {
-      // Cleanup if needed
       const salesiqScript = document.getElementById('zsiqscript');
       const analyticsScript = document.getElementById('wf_anal');
       if (salesiqScript) salesiqScript.remove();
@@ -179,17 +172,15 @@ export default function ContactFormSection() {
     // Track visitor before submission
     trackVisitor();
 
-    // Use traditional form submission to ensure analytics work
+    // Use traditional form submission
     submitTraditionalForm();
   };
 
   const trackVisitor = () => {
     try {
-      // Set visitor info in Zoho SalesIQ
       if (window.$zoho && window.$zoho.salesiq && window.$zoho.salesiq.visitor) {
         const name = formData.First_Name ? `${formData.First_Name} ${formData.Last_Name}` : formData.Last_Name;
         
-        // Update visitor info
         window.$zoho.salesiq.visitor.name(name);
         if (formData.Email) {
           window.$zoho.salesiq.visitor.email(formData.Email);
@@ -210,12 +201,12 @@ export default function ContactFormSection() {
     form.style.display = 'none';
     form.acceptCharset = 'UTF-8';
 
-    // Get visitor ID from Zoho SalesIQ
+    // Get visitor ID
     const visitorId = window.$zoho?.salesiq?.visitor?.uniqueid 
       ? window.$zoho.salesiq.visitor.uniqueid() 
       : '';
 
-    // Add all required fields EXACTLY as Zoho expects them
+    // Add all required fields - note the field names match Zoho's expected names
     const fields = [
       { name: 'xnQsjsdp', value: '4b6b0ea2b7e4d1b1874166f6a57bc505923caf9aa465b05d35799b45b8854f1c' },
       { name: 'zc_gad', value: '' },
@@ -227,11 +218,11 @@ export default function ContactFormSection() {
       { name: 'aG9uZXlwb3Q', value: '' },
       { name: 'Company', value: formData.Company },
       { name: 'Email', value: formData.Email },
-      { name: 'Last Name', value: formData.Last_Name },
+      { name: 'Last Name', value: formData.Last_Name }, // Zoho expects "Last Name" with space
       { name: 'Country', value: formData.Country },
       { name: 'Phone', value: formData.Phone },
       { name: 'Lead Source', value: formData.Lead_Source },
-      { name: 'First Name', value: formData.First_Name },
+      { name: 'First Name', value: formData.First_Name }, // Zoho expects "First Name" with space
       { name: 'Description', value: formData.Description },
     ];
 
@@ -248,7 +239,7 @@ export default function ContactFormSection() {
     // Submit the form
     form.submit();
     
-    // Clean up and redirect after a short delay
+    // Clean up and redirect
     setTimeout(() => {
       if (form.parentNode) {
         document.body.removeChild(form);
@@ -327,12 +318,12 @@ export default function ContactFormSection() {
             </p>
           </div>
 
-          <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <input
                   type="text"
-                  name="First Name"
+                  name="First_Name" // Changed to match state key
                   placeholder="First name"
                   value={formData.First_Name}
                   onChange={handleChange}
@@ -342,7 +333,7 @@ export default function ContactFormSection() {
               <div>
                 <input
                   type="text"
-                  name="Last Name"
+                  name="Last_Name" // Changed to match state key
                   placeholder="Last name *"
                   value={formData.Last_Name}
                   onChange={handleChange}
@@ -466,7 +457,7 @@ export default function ContactFormSection() {
             {/* Lead Source Dropdown */}
             <div className="relative">
               <select
-                name="Lead Source"
+                name="Lead_Source"
                 value={formData.Lead_Source}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent appearance-none"
@@ -500,7 +491,7 @@ export default function ContactFormSection() {
         </div>
       </div>
 
-      {/* Add inline styles for scrollbar */}
+      {/* Add inline styles */}
       <style jsx>{`
         .custom-scrollbar {
           scrollbar-width: thin;
@@ -528,65 +519,7 @@ export default function ContactFormSection() {
           background-color: #1e3a8a;
           color: white;
         }
-        
-        select:focus option:checked {
-          background-color: #0ea5e9;
-        }
       `}</style>
-
-      {/* Load Zoho scripts directly in the component */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            // Initialize $zoho globally
-            if (typeof window !== 'undefined') {
-              window.$zoho = window.$zoho || {};
-              window.$zoho.salesiq = window.$zoho.salesiq || {
-                widgetcode: 'siq41258c3cb2e1c0b1f7d16f7dedd532bfca2050e92ced5e33f49f4d17b7992720',
-                values: {},
-                ready: function() {},
-                visitor: {
-                  name: function(name) {
-                    console.log('Zoho Visitor Name Set:', name);
-                  },
-                  email: function(email) {
-                    console.log('Zoho Visitor Email Set:', email);
-                  },
-                  uniqueid: function() {
-                    // Generate or retrieve visitor ID
-                    let visitorId = localStorage.getItem('zoho_visitor_id');
-                    if (!visitorId) {
-                      visitorId = 'visitor_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
-                      localStorage.setItem('zoho_visitor_id', visitorId);
-                    }
-                    return visitorId;
-                  }
-                }
-              };
-              
-              // Load Zoho SalesIQ widget
-              if (!document.getElementById('zsiqscript')) {
-                var d = document;
-                var s = d.createElement('script');
-                s.type = 'text/javascript';
-                s.id = 'zsiqscript';
-                s.defer = true;
-                s.src = 'https://salesiq.zoho.com/widget';
-                var t = d.getElementsByTagName('script')[0];
-                t.parentNode.insertBefore(s, t);
-              }
-              
-              // Load Zoho Analytics script
-              if (!document.getElementById('wf_anal')) {
-                var analyticsScript = d.createElement('script');
-                analyticsScript.id = 'wf_anal';
-                analyticsScript.src = 'https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=307f0ed3c6d617630c4b1fef5b1eced82107ec34091f34f124e6da41be0d7b76c58af565866b75f7f64d75320a2aec4dgid9adc5254ebf3cecbd6e1e1c128974161d16142aa27651ade5384bd7ff9901646gid0fe566524e9e75eea7d6b903e345c9c1b6c3e53a7aba064e0ed7b0fb65032980gid1b0e101b683493fd05275d50c88ab0aed3b87020ff143e4c9b6a4245fe2c3c46&tw=df0e3999f015bdcf56569b04357cb2e1be74fae6e9bfac30ee7922df9035a3c6';
-                d.body.appendChild(analyticsScript);
-              }
-            }
-          `
-        }}
-      />
     </header>
   );
 }
