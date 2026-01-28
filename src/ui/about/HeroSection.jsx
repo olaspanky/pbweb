@@ -115,11 +115,11 @@ export default function HeroSection() {
       {/* Dynamic Hero Content - Vertically Centered */}
       <div className="relative z-20 h-screen flex items-center pt-24 lg:pt-32">
         <div className="max-w-[1440px] px-6 sm:px-12 md:px-16 lg:px-20 mx-auto w-full flex flex-col gap-6 md:gap-8">
-          <h1 className="text-grey-0 uppercase text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-snug md:leading-tight animate-fade-in w-full md:w-[95%]">
+          <h1 className="text-grey-0 uppercase text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-snug md:leading-tight animate-fade-in w-full md:w-[98%]">
             {slides[selectedIndex].title}
           </h1>
 
-          <p className="text-grey-0 text-base sm:text-lg md:text-xl  animate-fade-in delay-150">
+          <p className="text-grey-0 text-base sm:text-lg md:text-xl  animate-fade-in delay-150 md:w-[70%]">
             {slides[selectedIndex].subtitle}
           </p>
 

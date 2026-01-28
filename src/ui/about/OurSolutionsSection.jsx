@@ -55,17 +55,24 @@ const DifferentiatingEdge = () => {
 
   return (
     <section className="relative">
-      {/* Background wrapper with inline style */}
-      <div
-        className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 py-20 relative"
-        style={{
-          backgroundImage: `url("/bg1.png")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div className="relative z-10">
+      {/* Background wrapper with inline style and overlay */}
+      <div className="relative max-w-[1440px] mx-auto">
+        {/* Background image */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("/bg1.png")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+        
+        {/* Deep blue overlay */}
+        <div className="absolute inset-0 bg-gray-900/40" />
+        
+        {/* Content */}
+        <div className="relative z-10 px-6 sm:px-12 lg:px-16 py-20">
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
