@@ -84,7 +84,7 @@ export default function HeroSection() {
             {slides[selectedIndex].title}
           </h1>
 
-          <p className="text-grey-0 text-base sm:text-lg md:text-xl max-w-full md:max-w-2xl animate-fade-in delay-150">
+          <p className="text-grey-0 text-base sm:text-lg md:text-xl  animate-fade-in delay-150">
             {slides[selectedIndex].subtitle}
           </p>
 

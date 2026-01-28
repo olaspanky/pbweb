@@ -18,9 +18,7 @@ const slides = [
     title: (
       <>
        Transforming{" "}
-            <span className="text-brand-green">Healthcare</span> In Emerging
-            Markets Through{" "}
-            <span className="text-brand-gold">Intelligent Data</span>
+            <span className="text-brand-green">Healthcare</span> In Emerging Markets Through{" "} <span className="text-brand-gold">Intelligent Data</span>.
       </>
     ),
     subtitle: "Unlocking Insights to Improve Access, Efficiency, and Outcomes",
@@ -30,7 +28,7 @@ const slides = [
     title: (
       <>
        Advancing <span className="text-brand-green">Healthcare </span> through{" "}
-            <span className="text-[#D3A352]">intelligence</span> 
+            <span className="text-[#D3A352]">intelligence</span>. 
       </>
     ),
     subtitle: "Transforming Data into Global Impact Across Emerging Markets" ,

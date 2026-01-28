@@ -10,7 +10,7 @@ export default function OurDifferenceSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           
           {/* Image */}
-          <figure className="rounded-xl overflow-hidden relative h-[350px] sm:h-[420px] lg:h-full">
+          <figure className="rounded-xl overflow-hidden relative h-[350px] sm:h-[420px] ">
             <Image
               src={image}
               alt="Man pointing to statistics"
@@ -57,15 +57,9 @@ export default function OurDifferenceSection() {
 
             <p className="text-base sm:text-lg text-grey-700 font-medium leading-relaxed">
               PBR Life Sciences captures the pulse of African pharmaceuticals
-              with AI-powered analytics, tracking 10,958 SKUs and 8,289 unique
-              brands through VERSUS™, alongside 7,000+ brands across 78 therapy
-              areas via MarketSizer™. Our data highlights a $1.01B Nigerian
+              with AI-powered analytics. Our data highlights a $1.01B Nigerian
               pharma market by 2028, driven by a population set to exceed 377
-              million by 2050, yet challenged by 70% import reliance. With 1,000+
-              pharmacy partnerships and a 200% revenue increase, PBR’s
-              insights—recognized in “Top 15 Startups to Watch in 2025”—empower
-              stakeholders to seize opportunities in a $45.3B global antibiotics
-              market and beyond.
+              million by 2050, yet challenged by 70% import reliance. 
             </p>
 
            

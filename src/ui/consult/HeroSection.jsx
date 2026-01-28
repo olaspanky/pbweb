@@ -56,13 +56,17 @@ export default function HeroSection() {
           <h1 className="text-grey-0 uppercase text-3xl sm:text-5xl lg:text-6xl w-full sm:w-[85%] md:w-[98%] font-medium leading-tight">
             Data-Powered Go-to-Market & {" "}
             <span className="text-brand-green">Commercial Excellence</span> for{" "}
-            <span className="text-brand-gold">Emerging Markets</span>
+            <span className="text-brand-gold">Emerging Markets</span>.
           </h1>
 
 
           <p className="text-base sm:text-lg md:text-md text-grey-0 max-w-7xl">
  Helping pharma and life sciences leaders decide where to play, how to win, and how to scale in emerging markets
 </p>
+
+  <div className="hidden md:block">
+              <Button content={{ label: "Learn More", to: "/contact" }} />
+            </div>
 
          
                 
