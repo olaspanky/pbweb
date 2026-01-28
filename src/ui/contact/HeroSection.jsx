@@ -57,7 +57,7 @@ const leadSources = [
 export default function ContactFormSection() {
   const [emblaRef] = useEmblaCarousel(
     { loop: true },
-    [Autoplay({ delay: 8000, stopOnInteraction: false })]
+    [Autoplay({ delay: 12000, stopOnInteraction: false })]
   );
 
   const [formData, setFormData] = useState({

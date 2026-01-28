@@ -9,7 +9,7 @@ import Button from "@/components/Button";
 export default function HeroCarousel({ slides }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, skipSnaps: false },
-    [Autoplay({ delay: 8000, stopOnInteraction: false })]
+    [Autoplay({ delay: 12000, stopOnInteraction: false })]
   );
 
   useEffect(() => {
