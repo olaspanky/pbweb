@@ -95,9 +95,9 @@ export default function Navigation({ className }) {
             >
               <Link
                 href={link.href}
-                className={`transition-colors hover:text-blue-600 ${
+                className={`transition-colors hover:text-sky-500 ${
                   isActive(link.href)
-                    ? "text-blue-600 border-b-2 border-blue-600 pb-1"
+                    ? "text-sky-500 border-b-2 border-sky-500 pb-1"
                     : "text-grey-0"
                 }`}
               >
@@ -111,9 +111,9 @@ export default function Navigation({ className }) {
                     <li key={sublink.href}>
                       <Link
                         href={sublink.href}
-                        className={`block px-4 py-2 text-xs font-semibold transition-colors hover:bg-blue-50 hover:text-blue-600 ${
+                        className={`block px-4 py-2 text-xs font-semibold transition-colors hover:bg-blue-50 hover:text-sky-500 ${
                           isActive(sublink.href)
-                            ? "text-blue-600"
+                            ? "text-sky-500"
                             : "text-grey-900"
                         }`}
                       >
