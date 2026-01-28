@@ -57,8 +57,7 @@ export default function HeroSection() {
            Deliver industry-shaping value with us
           </h1>
 
-          <p className="text-base sm:text-lg md:text-2xl font-extrabold  text-grey-0 max-w-7xl">
-Helping pharma and life sciences leaders decide where to play, how to win, and how to scale in emerging markets          </p>
+          
 
           <p className="text-base sm:text-lg md:text-md text-grey-0 max-w-7xl">
 We believe in our people and the enormous value they bring to our clients. Join us as we passionately make a difference for patients, healthcare professionals, and the life science industry.</p>
