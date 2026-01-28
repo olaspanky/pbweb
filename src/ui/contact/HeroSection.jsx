@@ -7,7 +7,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { Search, ChevronDown, X } from "lucide-react";
 import HeroImage1 from "@/assets/images/cu.png";
-import Script from "next/script";
 
 const heroImages = [HeroImage1];
 
@@ -35,36 +34,116 @@ const countries = [
 ];
 
 const leadSources = [
-  '-None-', 'Advertisement', 'Cold Call', 'Employee Referral', 'External Referral', 
-  'Online Store', 'Twitter', 'Facebook', 'Partner', 'Google+', 'Public Relations', 
-  'Sales Email Alias', 'Seminar Partner', 'Internal Seminar', 'Trade Show', 
-  'Web Download', 'Web Research', 'Chat'
+  "-None-",
+  "Advertisement",
+  "Cold Call",
+  "Employee Referral",
+  "External Referral",
+  "Online Store",
+  "Twitter",
+  "Facebook",
+  "Partner",
+  "Google+",
+  "Public Relations",
+  "Sales Email Alias",
+  "Seminar Partner",
+  "Internal Seminar",
+  "Trade Show",
+  "Web Download",
+  "Web Research",
+  "Chat"
 ];
 
-export default function HeroSection() {
+export default function ContactFormSection() {
   const [emblaRef] = useEmblaCarousel(
     { loop: true },
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
   const [formData, setFormData] = useState({
-    'First Name': '',
-    'Last Name': '',
-    'Email': '',
-    'Phone': '',
-    'Company': '',
-    'Country': '',
-    'Lead Source': '',
-    'Description': ''
+    First_Name: '',
+    Last_Name: '',
+    Email: '',
+    Phone: '',
+    Company: '',
+    Position: '',
+    Country: '',
+    Lead_Source: '-None-',
+    Description: ''
   });
 
-  const [isCountryOpen, setIsCountryOpen] = useState(false);
-  const [isLeadSourceOpen, setIsLeadSourceOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const dropdownRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const countryDropdownRef = useRef(null);
-  const leadSourceDropdownRef = useRef(null);
   const formRef = useRef(null);
+
+  // Load Zoho tracking scripts
+  useEffect(() => {
+    // Load SalesIQ widget
+    const loadZohoSalesIQ = () => {
+      // Check if script already exists
+      if (document.getElementById('zsiqscript')) return;
+      
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.id = 'zsiqscript';
+      script.defer = true;
+      script.src = 'https://salesiq.zoho.com/widget';
+      
+      // Initialize $zoho object
+      window.$zoho = window.$zoho || {};
+      window.$zoho.salesiq = window.$zoho.salesiq || {
+        widgetcode: 'siq41258c3cb2e1c0b1f7d16f7dedd532bfca2050e92ced5e33f49f4d17b7992720',
+        values: {},
+        ready: function() {}
+      };
+      
+      document.body.appendChild(script);
+    };
+
+    // Load Analytics script
+    const loadAnalyticsScript = () => {
+      // Check if script already exists
+      if (document.getElementById('wf_anal')) return;
+      
+      const script = document.createElement('script');
+      script.id = 'wf_anal';
+      script.src = 'https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=307f0ed3c6d617630c4b1fef5b1eced82107ec34091f34f124e6da41be0d7b76c58af565866b75f7f64d75320a2aec4dgid9adc5254ebf3cecbd6e1e1c128974161d16142aa27651ade5384bd7ff9901646gid0fe566524e9e75eea7d6b903e345c9c1b6c3e53a7aba064e0ed7b0fb65032980gid1b0e101b683493fd05275d50c88ab0aed3b87020ff143e4c9b6a4245fe2c3c46&tw=df0e3999f015bdcf56569b04357cb2e1be74fae6e9bfac30ee7922df9035a3c6';
+      document.body.appendChild(script);
+    };
+
+    // Load both scripts
+    loadZohoSalesIQ();
+    loadAnalyticsScript();
+
+    // Initialize $zoho object if not exists
+    if (!window.$zoho) {
+      window.$zoho = {};
+    }
+    if (!window.$zoho.salesiq) {
+      window.$zoho.salesiq = {
+        widgetcode: 'siq41258c3cb2e1c0b1f7d16f7dedd532bfca2050e92ced5e33f49f4d17b7992720',
+        values: {},
+        ready: function() {},
+        visitor: {
+          name: function(name) {},
+          email: function(email) {},
+          uniqueid: function() { 
+            return 'visitor_' + Math.random().toString(36).substring(2) + Date.now().toString(36); 
+          }
+        }
+      };
+    }
+
+    return () => {
+      // Cleanup if needed
+      const salesiqScript = document.getElementById('zsiqscript');
+      const analyticsScript = document.getElementById('wf_anal');
+      if (salesiqScript) salesiqScript.remove();
+      if (analyticsScript) analyticsScript.remove();
+    };
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -74,126 +153,128 @@ export default function HeroSection() {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.Company.trim()) {
+      alert('Company cannot be empty.');
+      return;
+    }
+    
+    if (!formData.Last_Name.trim()) {
+      alert('Last Name cannot be empty.');
+      return;
+    }
+    
+    // Validate email if provided
+    if (formData.Email.trim()) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.Email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+    }
+
+    // Track visitor before submission
+    trackVisitor();
+
+    // Use traditional form submission to ensure analytics work
+    submitTraditionalForm();
+  };
+
+  const trackVisitor = () => {
+    try {
+      // Set visitor info in Zoho SalesIQ
+      if (window.$zoho && window.$zoho.salesiq && window.$zoho.salesiq.visitor) {
+        const name = formData.First_Name ? `${formData.First_Name} ${formData.Last_Name}` : formData.Last_Name;
+        
+        // Update visitor info
+        window.$zoho.salesiq.visitor.name(name);
+        if (formData.Email) {
+          window.$zoho.salesiq.visitor.email(formData.Email);
+        }
+      }
+    } catch (error) {
+      console.error('Tracking error:', error);
+    }
+  };
+
+  const submitTraditionalForm = () => {
+    setIsSubmitting(true);
+
+    // Create a hidden traditional form
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://crm.zoho.com/crm/WebToLeadForm';
+    form.style.display = 'none';
+    form.acceptCharset = 'UTF-8';
+
+    // Get visitor ID from Zoho SalesIQ
+    const visitorId = window.$zoho?.salesiq?.visitor?.uniqueid 
+      ? window.$zoho.salesiq.visitor.uniqueid() 
+      : '';
+
+    // Add all required fields EXACTLY as Zoho expects them
+    const fields = [
+      { name: 'xnQsjsdp', value: '4b6b0ea2b7e4d1b1874166f6a57bc505923caf9aa465b05d35799b45b8854f1c' },
+      { name: 'zc_gad', value: '' },
+      { name: 'xmIwtLD', value: '9f1676cda2c88594a4c738ce8537260f438c62a856081fed257b42097a3a52cdd172ad5b6608b7b5a21e0adad55cc32e' },
+      { name: 'actionType', value: 'TGVhZHM=' },
+      { name: 'returnURL', value: 'https://pweb-blue-zeta.vercel.app/thanks' },
+      { name: 'ldeskuid', value: '' },
+      { name: 'LDTuvid', value: visitorId },
+      { name: 'aG9uZXlwb3Q', value: '' },
+      { name: 'Company', value: formData.Company },
+      { name: 'Email', value: formData.Email },
+      { name: 'Last Name', value: formData.Last_Name },
+      { name: 'Country', value: formData.Country },
+      { name: 'Phone', value: formData.Phone },
+      { name: 'Lead Source', value: formData.Lead_Source },
+      { name: 'First Name', value: formData.First_Name },
+      { name: 'Description', value: formData.Description },
+    ];
+
+    fields.forEach(field => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = field.name;
+      input.value = field.value;
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    
+    // Submit the form
+    form.submit();
+    
+    // Clean up and redirect after a short delay
+    setTimeout(() => {
+      if (form.parentNode) {
+        document.body.removeChild(form);
+      }
+      window.location.href = 'https://pweb-blue-zeta.vercel.app/thanks';
+    }, 1000);
+  };
+
   const handleCountrySelect = (country) => {
     setFormData(prev => ({
       ...prev,
-      'Country': country
+      Country: country
     }));
-    setIsCountryOpen(false);
+    setIsOpen(false);
     setSearchTerm('');
   };
 
-  const handleLeadSourceSelect = (source) => {
-    setFormData(prev => ({
-      ...prev,
-      'Lead Source': source
-    }));
-    setIsLeadSourceOpen(false);
-  };
-
-  // Filter countries based on search term
   const filteredCountries = countries.filter(country =>
     country.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Email validation
-  const validateEmail = (email) => {
-    if (!email || email.trim().length === 0) return true; // Email is optional
-    const atpos = email.indexOf('@');
-    const dotpos = email.lastIndexOf('.');
-    if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
-      alert('Please enter a valid email address.');
-      return false;
-    }
-    return true;
-  };
-
-  // Check mandatory fields
-  const checkMandatory = () => {
-    if (!formData['Company'] || formData['Company'].trim().length === 0) {
-      alert('Company cannot be empty.');
-      return false;
-    }
-    if (!formData['Last Name'] || formData['Last Name'].trim().length === 0) {
-      alert('Last Name cannot be empty.');
-      return false;
-    }
-    return validateEmail(formData['Email']);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (!checkMandatory()) {
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      // Track visitor before submission
-      if (window.$zoho && window.$zoho.salesiq) {
-        const name = formData['First Name'] 
-          ? `${formData['First Name']} ${formData['Last Name']}` 
-          : formData['Last Name'];
-        window.$zoho.salesiq.visitor.name(name);
-        if (formData['Email']) {
-          window.$zoho.salesiq.visitor.email(formData['Email']);
-        }
-      }
-
-      // Create form data for submission
-      const submitFormData = new FormData();
-      submitFormData.append('xnQsjsdp', '4b6b0ea2b7e4d1b1874166f6a57bc505923caf9aa465b05d35799b45b8854f1c');
-      submitFormData.append('zc_gad', '');
-      submitFormData.append('xmIwtLD', '9f1676cda2c88594a4c738ce8537260f438c62a856081fed257b42097a3a52cdd172ad5b6608b7b5a21e0adad55cc32e');
-      submitFormData.append('actionType', 'TGVhZHM=');
-      submitFormData.append('returnURL', 'https://pweb-blue-zeta.vercel.app/thanks');
-      
-      // Add visitor tracking IDs if available
-      if (window.$zoho && window.$zoho.salesiq && window.$zoho.salesiq.visitor) {
-        const uniqueId = window.$zoho.salesiq.visitor.uniqueid();
-        if (uniqueId) {
-          submitFormData.append('LDTuvid', uniqueId);
-        }
-      }
-      
-      // Add form fields
-      Object.keys(formData).forEach(key => {
-        if (formData[key]) {
-          submitFormData.append(key, formData[key]);
-        }
-      });
-
-      // Submit to Zoho
-      const response = await fetch('https://crm.zoho.com/crm/WebToLeadForm', {
-        method: 'POST',
-        body: submitFormData
-      });
-
-      if (response.ok) {
-        // Redirect to thank you page
-        window.location.href = 'https://pweb-blue-zeta.vercel.app/thanks';
-      } else {
-        alert('There was an error submitting the form. Please try again.');
-        setIsSubmitting(false);
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      alert('There was an error submitting the form. Please try again.');
-      setIsSubmitting(false);
-    }
-  };
-
-  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target)) {
-        setIsCountryOpen(false);
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
         setSearchTerm('');
-      }
-      if (leadSourceDropdownRef.current && !leadSourceDropdownRef.current.contains(event.target)) {
-        setIsLeadSourceOpen(false);
       }
     };
 
@@ -201,275 +282,311 @@ export default function HeroSection() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Initialize Zoho SalesIQ
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.$zoho = window.$zoho || {};
-      window.$zoho.salesiq = window.$zoho.salesiq || {
-        widgetcode: 'siq41258c3cb2e1c0b1f7d16f7dedd532bfca2050e92ced5e33f49f4d17b7992720',
-        values: {},
-        ready: function(){}
-      };
-    }
-  }, []);
-
   return (
-    <>
-      {/* Zoho SalesIQ Script */}
-      <Script
-        id="zsiqscript"
-        src="https://salesiq.zoho.com/widget"
-        strategy="lazyOnload"
-      />
+    <header className="relative w-full min-h-screen overflow-hidden">
+      {/* Background Slider */}
+      <div className="absolute inset-0 -z-10 h-full">
+        <div className="embla h-full w-full" ref={emblaRef}>
+          <div className="embla__container flex h-full">
+            {heroImages.map((image, index) => (
+              <div
+                key={index}
+                className="embla__slide relative flex-[0_0_100%] h-full"
+              >
+                <Image
+                  src={image}
+                  fill
+                  alt={`Hero background ${index + 1}`}
+                  className="object-cover object-center"
+                  priority={index === 0}
+                  placeholder="blur"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
 
-      {/* Zoho Analytics Script */}
-      <Script
-        id="wf_anal"
-        src="https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=3f047f4b75530f9d03b796f588fb54f2b8816e45452850a85d60e45be6105c0181e1d68bc553ce5c42c43384e6130195gid8dadd95754a5f124f6287cd5ef0aefcbcb6d46555bc6705fead330b4f8cc8073gidc4a4329e1b267f886a30eb2cd5624d12837eb6e84edf6fee5ab0de5ec8d5b395gidfb3168520dbd18325d9b304de787578f8884ec86a73cbd2741c1c3e31786815d&tw=2257f00a8cd8430fc387959cd751a26d55ff2bc81ec1c42796c759b5e5e25537"
-        strategy="lazyOnload"
-      />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark-blue/80 via-brand-blue/70 to-brand-light-blue/60" />
+      </div>
 
-      <header className="relative w-full min-h-screen overflow-hidden">
-        {/* Background Slider */}
-        <div className="absolute inset-0 -z-10 h-full">
-          <div className="embla h-full w-full" ref={emblaRef}>
-            <div className="embla__container flex h-full">
-              {heroImages.map((image, index) => (
-                <div
-                  key={index}
-                  className="embla__slide relative flex-[0_0_100%] h-full"
-                >
-                  <Image
-                    src={image}
-                    fill
-                    alt={`Hero background ${index + 1}`}
-                    className="object-cover object-center"
-                    priority={index === 0}
-                    placeholder="blur"
-                  />
-                </div>
-              ))}
-            </div>
+      {/* Navigation */}
+      <div className="relative z-50">
+        <Navigation />
+      </div>
+
+      {/* Contact Form Content */}
+      <div className="relative z-20 max-w-[1440px] px-6 lg:px-18 mx-auto py-5 md:py-9 flex items-center justify-end min-h-[calc(100vh-80px)]">
+        <div className="w-full max-w-xl">
+          <div className="text-left mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Get in touch with Us
+            </h1>
+            <p className="text-lg text-blue-100">
+              Kick-start your business planning with real-world data and market insight today
+            </p>
           </div>
 
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark-blue/80 via-brand-blue/70 to-brand-light-blue/60" />
-        </div>
-
-        {/* Navigation */}
-        <div className="relative z-50">
-          <Navigation />
-        </div>
-
-        {/* Contact Form Content */}
-        <div className="relative z-20 max-w-[1440px] px-6 lg:px-18 mx-auto py-5 md:py-9 flex items-center justify-end min-h-[calc(100vh-80px)]">
-          <div className="w-full max-w-xl">
-            <div className="text-left mb-8">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Get in touch with Us
-              </h1>
-              <p className="text-lg text-blue-100">
-                Kick-start your business planning with real-world data and market insight today
-              </p>
-            </div>
-
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
-              {/* Hidden Zoho Fields */}
-              <input type="hidden" name="xnQsjsdp" value="4b6b0ea2b7e4d1b1874166f6a57bc505923caf9aa465b05d35799b45b8854f1c" />
-              <input type="hidden" name="zc_gad" id="zc_gad" value="" />
-              <input type="hidden" name="xmIwtLD" value="9f1676cda2c88594a4c738ce8537260f438c62a856081fed257b42097a3a52cdd172ad5b6608b7b5a21e0adad55cc32e" />
-              <input type="hidden" name="actionType" value="TGVhZHM=" />
-              <input type="hidden" name="returnURL" value="https://pweb-blue-zeta.vercel.app/thanks" />
-              <input type="hidden" id="ldeskuid" name="ldeskuid" />
-              <input type="hidden" id="LDTuvid" name="LDTuvid" />
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
                 <input
                   type="text"
                   name="First Name"
                   placeholder="First name"
-                  value={formData['First Name']}
+                  value={formData.First_Name}
                   onChange={handleChange}
-                  maxLength="40"
                   className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
                 />
+              </div>
+              <div>
                 <input
                   type="text"
                   name="Last Name"
                   placeholder="Last name *"
-                  value={formData['Last Name']}
+                  value={formData.Last_Name}
                   onChange={handleChange}
-                  maxLength="80"
                   required
                   className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
                 />
               </div>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="email"
+                name="Email"
+                placeholder="Email address"
+                value={formData.Email}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
+              />
+              <input
+                type="tel"
+                name="Phone"
+                placeholder="Phone number"
+                value={formData.Phone}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
                 <input
-                  type="email"
-                  name="Email"
-                  placeholder="Email address"
-                  value={formData['Email']}
+                  type="text"
+                  name="Company"
+                  placeholder="Company *"
+                  value={formData.Company}
                   onChange={handleChange}
-                  maxLength="100"
-                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
-                />
-                <input
-                  type="tel"
-                  name="Phone"
-                  placeholder="Phone number"
-                  value={formData['Phone']}
-                  onChange={handleChange}
-                  maxLength="30"
+                  required
                   className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
                 />
               </div>
+              <div>
+                <input
+                  type="text"
+                  name="Position"
+                  placeholder="Position"
+                  value={formData.Position}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
+                />
+              </div>
+            </div>
 
-              <input
-                type="text"
-                name="Company"
-                placeholder="Company / Organization *"
-                value={formData['Company']}
-                onChange={handleChange}
-                maxLength="200"
-                required
-                className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
-              />
+            {/* Country Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                type="button"
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all flex items-center justify-between"
+              >
+                <span className={formData.Country ? "text-white" : "text-white/70"}>
+                  {formData.Country || "Choose country"}
+                </span>
+                <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+              </button>
 
-              {/* Country Dropdown */}
-              <div className="relative" ref={countryDropdownRef}>
-                <button
-                  type="button"
-                  onClick={() => setIsCountryOpen(!isCountryOpen)}
-                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all flex items-center justify-between"
-                >
-                  <span className={formData['Country'] ? "text-white" : "text-white/70"}>
-                    {formData['Country'] || "Choose country"}
-                  </span>
-                  <ChevronDown className={`w-5 h-5 transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} />
-                </button>
-
-                {isCountryOpen && (
-                  <div className="absolute z-50 w-full mt-2 bg-blue-900/95 backdrop-blur-xl border border-white/20 rounded-lg shadow-2xl overflow-hidden">
-                    <div className="p-3 border-b border-white/10">
-                      <div className="relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
-                        <input
-                          type="text"
-                          placeholder="Search countries..."
-                          value={searchTerm}
-                          onChange={(e) => setSearchTerm(e.target.value)}
-                          className="w-full pl-10 pr-10 py-2.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                          autoFocus
-                        />
-                        {searchTerm && (
-                          <button
-                            type="button"
-                            onClick={() => setSearchTerm('')}
-                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white"
-                          >
-                            <X className="w-4 h-4" />
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                    <div className="max-h-64 overflow-y-auto custom-scrollbar">
-                      {filteredCountries.length > 0 ? (
-                        filteredCountries.map((country) => (
-                          <button
-                            key={country}
-                            type="button"
-                            onClick={() => handleCountrySelect(country)}
-                            className="w-full px-4 py-3 text-left text-white hover:bg-white/10 transition-colors flex items-center justify-between group"
-                          >
-                            <span>{country}</span>
-                            {formData['Country'] === country && (
-                              <span className="text-cyan-400">✓</span>
-                            )}
-                          </button>
-                        ))
-                      ) : (
-                        <div className="px-4 py-8 text-center text-white/50">
-                          No countries found
-                        </div>
+              {isOpen && (
+                <div className="absolute z-50 w-full mt-2 bg-blue-900/95 backdrop-blur-xl border border-white/20 rounded-lg shadow-2xl overflow-hidden">
+                  <div className="p-3 border-b border-white/10">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                      <input
+                        type="text"
+                        placeholder="Search countries..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full pl-10 pr-10 py-2.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                        autoFocus
+                      />
+                      {searchTerm && (
+                        <button
+                          type="button"
+                          onClick={() => setSearchTerm('')}
+                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
                       )}
                     </div>
                   </div>
-                )}
-              </div>
-
-              {/* Lead Source Dropdown */}
-              <div className="relative" ref={leadSourceDropdownRef}>
-                <button
-                  type="button"
-                  onClick={() => setIsLeadSourceOpen(!isLeadSourceOpen)}
-                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all flex items-center justify-between"
-                >
-                  <span className={formData['Lead Source'] ? "text-white" : "text-white/70"}>
-                    {formData['Lead Source'] || "Lead Source"}
-                  </span>
-                  <ChevronDown className={`w-5 h-5 transition-transform ${isLeadSourceOpen ? 'rotate-180' : ''}`} />
-                </button>
-
-                {isLeadSourceOpen && (
-                  <div className="absolute z-50 w-full mt-2 bg-blue-900/95 backdrop-blur-xl border border-white/20 rounded-lg shadow-2xl overflow-hidden">
-                    <div className="max-h-64 overflow-y-auto custom-scrollbar">
-                      {leadSources.map((source) => (
+                  <div className="max-h-64 overflow-y-auto custom-scrollbar">
+                    {filteredCountries.length > 0 ? (
+                      filteredCountries.map((country) => (
                         <button
-                          key={source}
                           type="button"
-                          onClick={() => handleLeadSourceSelect(source)}
+                          key={country}
+                          onClick={() => handleCountrySelect(country)}
                           className="w-full px-4 py-3 text-left text-white hover:bg-white/10 transition-colors flex items-center justify-between group"
                         >
-                          <span>{source}</span>
-                          {formData['Lead Source'] === source && (
+                          <span>{country}</span>
+                          {formData.Country === country && (
                             <span className="text-cyan-400">✓</span>
                           )}
                         </button>
-                      ))}
-                    </div>
+                      ))
+                    ) : (
+                      <div className="px-4 py-8 text-center text-white/50">
+                        No countries found
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-
-              <textarea
-                name="Description"
-                placeholder="Message"
-                value={formData['Description']}
+                </div>
+              )}
+              <input
+                type="hidden"
+                name="Country"
+                value={formData.Country}
                 onChange={handleChange}
-                rows={5}
-                className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none"
               />
+            </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-3 bg-[#0794D4] hover:bg-[#036593] text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+            {/* Lead Source Dropdown */}
+            <div className="relative">
+              <select
+                name="Lead Source"
+                value={formData.Lead_Source}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent appearance-none"
               >
-                {isSubmitting ? 'Submitting...' : 'Submit'}
-              </button>
-            </form>
-          </div>
-        </div>
+                {leadSources.map((source) => (
+                  <option key={source} value={source} className="bg-blue-900 text-white">
+                    {source}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/70 pointer-events-none" />
+            </div>
 
-        <style jsx>{`
-          .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.3);
-          }
-        `}</style>
-      </header>
-    </>
+            <textarea
+              name="Description"
+              placeholder="Message"
+              value={formData.Description}
+              onChange={handleChange}
+              rows={5}
+              className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none"
+            />
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-3 bg-[#0794D4] hover:bg-[#036593] text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit'}
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* Add inline styles for scrollbar */}
+      <style jsx>{`
+        .custom-scrollbar {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background-color: rgba(255, 255, 255, 0.3);
+          border-radius: 3px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        select option {
+          background-color: #1e3a8a;
+          color: white;
+        }
+        
+        select:focus option:checked {
+          background-color: #0ea5e9;
+        }
+      `}</style>
+
+      {/* Load Zoho scripts directly in the component */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            // Initialize $zoho globally
+            if (typeof window !== 'undefined') {
+              window.$zoho = window.$zoho || {};
+              window.$zoho.salesiq = window.$zoho.salesiq || {
+                widgetcode: 'siq41258c3cb2e1c0b1f7d16f7dedd532bfca2050e92ced5e33f49f4d17b7992720',
+                values: {},
+                ready: function() {},
+                visitor: {
+                  name: function(name) {
+                    console.log('Zoho Visitor Name Set:', name);
+                  },
+                  email: function(email) {
+                    console.log('Zoho Visitor Email Set:', email);
+                  },
+                  uniqueid: function() {
+                    // Generate or retrieve visitor ID
+                    let visitorId = localStorage.getItem('zoho_visitor_id');
+                    if (!visitorId) {
+                      visitorId = 'visitor_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+                      localStorage.setItem('zoho_visitor_id', visitorId);
+                    }
+                    return visitorId;
+                  }
+                }
+              };
+              
+              // Load Zoho SalesIQ widget
+              if (!document.getElementById('zsiqscript')) {
+                var d = document;
+                var s = d.createElement('script');
+                s.type = 'text/javascript';
+                s.id = 'zsiqscript';
+                s.defer = true;
+                s.src = 'https://salesiq.zoho.com/widget';
+                var t = d.getElementsByTagName('script')[0];
+                t.parentNode.insertBefore(s, t);
+              }
+              
+              // Load Zoho Analytics script
+              if (!document.getElementById('wf_anal')) {
+                var analyticsScript = d.createElement('script');
+                analyticsScript.id = 'wf_anal';
+                analyticsScript.src = 'https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=307f0ed3c6d617630c4b1fef5b1eced82107ec34091f34f124e6da41be0d7b76c58af565866b75f7f64d75320a2aec4dgid9adc5254ebf3cecbd6e1e1c128974161d16142aa27651ade5384bd7ff9901646gid0fe566524e9e75eea7d6b903e345c9c1b6c3e53a7aba064e0ed7b0fb65032980gid1b0e101b683493fd05275d50c88ab0aed3b87020ff143e4c9b6a4245fe2c3c46&tw=df0e3999f015bdcf56569b04357cb2e1be74fae6e9bfac30ee7922df9035a3c6';
+                d.body.appendChild(analyticsScript);
+              }
+            }
+          `
+        }}
+      />
+    </header>
   );
 }
