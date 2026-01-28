@@ -52,20 +52,21 @@ export default function Footer() {
               or through our online contact form.
             </p>
 
-            <div className="flex items-center gap-6">
-              <a href="https://www.facebook.com/PBR-Life-Sciences-61554007611436" aria-label="Facebook" className="hover:opacity-70 transition">
-                <Facebook />
-              </a>
-              <a href="https://ng.linkedin.com/company/pbr-life-sciences" aria-label="LinkedIn" className="hover:opacity-70 transition">
-                <Linkedin />
-              </a>
-              <a href="https://www.instagram.com/pbrlifesciences/?hl=en" aria-label="Instagram" className="hover:opacity-70 transition">
-                <Instagram />
-              </a>
-              <a href="https://x.com/pbrlifesciences" aria-label="Twitter" className="hover:opacity-70 transition">
-                <Twitter />
-              </a>
-            </div>
+          <div className="flex items-center gap-6">
+  <a href="https://www.facebook.com/PBR-Life-Sciences-61554007611436" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-70 transition" target="_blank">
+    <Facebook />
+  </a>
+  <a href="https://ng.linkedin.com/company/pbr-life-sciences" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:opacity-70 transition" target="_blank">
+    <Linkedin />
+  </a>
+  <a href="https://www.instagram.com/pbrlifesciences/?hl=en" rel="noopener noreferrer" aria-label="Instagram" className="hover:opacity-70 transition" target="_blank">
+    <Instagram />
+  </a>
+  <a href="https://x.com/pbrlifesciences" rel="noopener noreferrer" aria-label="Twitter" className="hover:opacity-70 transition" target="_blank">
+    <Twitter />
+  </a>
+</div>
+
           </div>
         </div>
 

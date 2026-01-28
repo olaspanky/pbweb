@@ -59,11 +59,9 @@ export default function HeroSection() {
             <span className="text-brand-gold">Emerging Markets</span>
           </h1>
 
-          <p className="text-base sm:text-lg md:text-2xl font-extrabold  text-grey-0 max-w-7xl">
-Helping pharma and life sciences leaders decide where to play, how to win, and how to scale in emerging markets          </p>
 
           <p className="text-base sm:text-lg md:text-md text-grey-0 max-w-7xl">
-  We combine proprietary real-world data, purpose-built platforms, and proven on-the-ground execution to turn complex emerging markets into predictable growth engines.
+ Helping pharma and life sciences leaders decide where to play, how to win, and how to scale in emerging markets
 </p>
 
          
