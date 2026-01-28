@@ -53,7 +53,7 @@ export default function HeroSection() {
       {/* Hero Content - Now truly centered */}
       <div className="relative z-20 h-full flex items-center pt-24 lg:pt-48">
         <div className="max-w-[1440px] px-6 lg:px-18 mx-auto w-full flex flex-col gap-6 md:gap-8">
-          <h1 className="text-grey-0 uppercase text-3xl sm:text-5xl lg:text-6xl w-full sm:w-[85%] md:w-[98%] font-medium leading-tight">
+          <h1 className="text-grey-0 uppercase text-3xl sm:text-5xl lg:text-6xl w-full sm:w-[85%] md:w-[90%] font-medium leading-tight">
             Data-Powered Go-to-Market & {" "}
             <span className="text-brand-green">Commercial Excellence</span> for{" "}
             <span className="text-brand-gold">Emerging Markets</span>.
