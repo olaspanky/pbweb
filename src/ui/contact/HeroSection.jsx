@@ -33,29 +33,51 @@ const countries = [
   "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
 ];
 
-export default function HeroSection() {
+const leadSources = [
+  "-None-",
+  "Advertisement",
+  "Cold Call",
+  "Employee Referral",
+  "External Referral",
+  "Online Store",
+  "Twitter",
+  "Facebook",
+  "Partner",
+  "Google+",
+  "Public Relations",
+  "Sales Email Alias",
+  "Seminar Partner",
+  "Internal Seminar",
+  "Trade Show",
+  "Web Download",
+  "Web Research",
+  "Chat"
+];
+
+export default function ContactFormSection() {
   const [emblaRef] = useEmblaCarousel(
     { loop: true },
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    organization: '',
-    position: '',
-    country: '',
-    product: '',
-    message: ''
+    First_Name: '',
+    Last_Name: '',
+    Email: '',
+    Phone: '',
+    Company: '',
+    Position: '',
+    Country: '',
+    Lead_Source: '-None-',
+    Description: ''
   });
 
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const dropdownRef = useRef(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = () => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -63,15 +85,77 @@ export default function HeroSection() {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log('Form submitted:', formData);
-    // Handle form submission here (e.g., API call)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.Company.trim()) {
+      alert('Company cannot be empty.');
+      return;
+    }
+    
+    if (!formData.Last_Name.trim()) {
+      alert('Last Name cannot be empty.');
+      return;
+    }
+    
+    // Validate email if provided
+    if (formData.Email.trim()) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.Email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Create form data for Zoho
+      const zohoFormData = new FormData();
+      
+      // Hidden Zoho fields
+      zohoFormData.append('xnQsjsdp', '4b6b0ea2b7e4d1b1874166f6a57bc505923caf9aa465b05d35799b45b8854f1c');
+      zohoFormData.append('zc_gad', '');
+      zohoFormData.append('xmIwtLD', '9f1676cda2c88594a4c738ce8537260f438c62a856081fed257b42097a3a52cdd172ad5b6608b7b5a21e0adad55cc32e');
+      zohoFormData.append('actionType', 'TGVhZHM=');
+      zohoFormData.append('returnURL', 'https://pweb-blue-zeta.vercel.app/thanks');
+      zohoFormData.append('ldeskuid', '');
+      zohoFormData.append('LDTuvid', '');
+      zohoFormData.append('aG9uZXlwb3Q', '');
+
+      // Form fields
+      zohoFormData.append('Company', formData.Company);
+      zohoFormData.append('Email', formData.Email);
+      zohoFormData.append('Last Name', formData.Last_Name);
+      zohoFormData.append('Country', formData.Country);
+      zohoFormData.append('Phone', formData.Phone);
+      zohoFormData.append('Lead Source', formData.Lead_Source);
+      zohoFormData.append('First Name', formData.First_Name);
+      zohoFormData.append('Description', formData.Description);
+
+      // Submit to Zoho
+      const response = await fetch('https://crm.zoho.com/crm/WebToLeadForm', {
+        method: 'POST',
+        body: zohoFormData,
+        mode: 'no-cors' // Zoho forms typically require no-cors
+      });
+
+      // Redirect to thank you page (handled by Zoho's returnURL)
+      window.location.href = 'https://pweb-blue-zeta.vercel.app/thanks';
+
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('There was an error submitting the form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCountrySelect = (country) => {
     setFormData(prev => ({
       ...prev,
-      country
+      Country: country
     }));
     setIsOpen(false);
     setSearchTerm('');
@@ -85,7 +169,7 @@ export default function HeroSection() {
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event)) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
         setSearchTerm('');
       }
@@ -140,62 +224,82 @@ export default function HeroSection() {
             </p>
           </div>
 
-          <div className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Hidden Zoho Fields */}
+            <input type="hidden" name="xnQsjsdp" value="4b6b0ea2b7e4d1b1874166f6a57bc505923caf9aa465b05d35799b45b8854f1c" />
+            <input type="hidden" name="zc_gad" value="" />
+            <input type="hidden" name="xmIwtLD" value="9f1676cda2c88594a4c738ce8537260f438c62a856081fed257b42097a3a52cdd172ad5b6608b7b5a21e0adad55cc32e" />
+            <input type="hidden" name="actionType" value="TGVhZHM=" />
+            <input type="hidden" name="returnURL" value="https://pweb-blue-zeta.vercel.app/thanks" />
+            <input type="hidden" name="ldeskuid" value="" />
+            <input type="hidden" name="LDTuvid" value="" />
+            <input type="hidden" name="aG9uZXlwb3Q" value="" />
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First name"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last name"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
-              />
+              <div>
+                <input
+                  type="text"
+                  name="First_Name"
+                  placeholder="First name"
+                  value={formData.First_Name}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="Last_Name"
+                  placeholder="Last name *"
+                  value={formData.Last_Name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 type="email"
-                name="email"
+                name="Email"
                 placeholder="Email address"
-                value={formData.email}
+                value={formData.Email}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
               />
               <input
                 type="tel"
-                name="phone"
+                name="Phone"
                 placeholder="Phone number"
-                value={formData.phone}
+                value={formData.Phone}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                name="organization"
-                placeholder="Organization"
-                value={formData.organization}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
-              />
-              <input
-                type="text"
-                name="position"
-                placeholder="Position"
-                value={formData.position}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
-              />
+              <div>
+                <input
+                  type="text"
+                  name="Company"
+                  placeholder="Company *"
+                  value={formData.Company}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="Position"
+                  placeholder="Position"
+                  value={formData.Position}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
+                />
+              </div>
             </div>
 
             {/* Country Dropdown */}
@@ -205,8 +309,8 @@ export default function HeroSection() {
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all flex items-center justify-between"
               >
-                <span className={formData.country ? "text-white" : "text-white/70"}>
-                  {formData.country || "Choose country"}
+                <span className={formData.Country ? "text-white" : "text-white/70"}>
+                  {formData.Country || "Choose country"}
                 </span>
                 <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
               </button>
@@ -226,6 +330,7 @@ export default function HeroSection() {
                       />
                       {searchTerm && (
                         <button
+                          type="button"
                           onClick={() => setSearchTerm('')}
                           className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white"
                         >
@@ -238,12 +343,13 @@ export default function HeroSection() {
                     {filteredCountries.length > 0 ? (
                       filteredCountries.map((country) => (
                         <button
+                          type="button"
                           key={country}
                           onClick={() => handleCountrySelect(country)}
                           className="w-full px-4 py-3 text-left text-white hover:bg-white/10 transition-colors flex items-center justify-between group"
                         >
                           <span>{country}</span>
-                          {formData.country === country && (
+                          {formData.Country === country && (
                             <span className="text-cyan-400">✓</span>
                           )}
                         </button>
@@ -256,26 +362,84 @@ export default function HeroSection() {
                   </div>
                 </div>
               )}
+              <input
+                type="hidden"
+                name="Country"
+                value={formData.Country}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Lead Source Dropdown */}
+            <div className="relative">
+              <select
+                name="Lead_Source"
+                value={formData.Lead_Source}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent appearance-none"
+              >
+                {leadSources.map((source) => (
+                  <option key={source} value={source} className="bg-blue-900 text-white">
+                    {source}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/70 pointer-events-none" />
             </div>
 
             <textarea
-              name="message"
+              name="Description"
               placeholder="Message"
-              value={formData.message}
+              value={formData.Description}
               onChange={handleChange}
               rows={5}
               className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent resize-none"
             />
 
             <button
-              onClick={handleSubmit}
-              className="w-full py-3 bg-[#0794D4] hover:bg-[#036593] text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-3 bg-[#0794D4] hover:bg-[#036593] text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Submit
+              {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
-          </div>
+          </form>
         </div>
       </div>
+
+      {/* Add custom scrollbar styles */}
+      <style jsx>{`
+        .custom-scrollbar {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background-color: rgba(255, 255, 255, 0.3);
+          border-radius: 3px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        select option {
+          background-color: #1e3a8a;
+          color: white;
+        }
+        
+        select:focus option:checked {
+          background-color: #0ea5e9;
+        }
+      `}</style>
     </header>
   );
 }
