@@ -86,7 +86,7 @@ export default function HeroSection() {
           </h1>
 
           <p className="text-grey-0 text-base sm:text-lg md:text-xl lg:text-[24px]  animate-fade-in delay-150 lg:w-[65%] ">
-            Access our expertly curated whitepaper covering trends, data, and forecasts across priority therapeutic <br/> areas empowering investors, healthcare leaders, and policymakers with actionable insights.
+            Access our expertly curated whitepaper covering trends, data, and forecasts across priority therapeutic areas empowering investors, healthcare leaders, and policymakers with actionable insights.
           </p>
 
           {/* Active Dots */}
