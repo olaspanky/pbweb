@@ -359,7 +359,7 @@ export default function ReportsPage() {
   }
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen lg:px-16">
       <ReportSearchBar 
         onSearch={handleSearch}
         onSort={handleSort}

@@ -40,7 +40,7 @@ const slides = [
        
       </>
     ),
-    subtitle: "To transform global healthcare through intelligent data, creating equal access to better health decisions worldwide.",
+    subtitle: "Ttransforming global healthcare through intelligent data, creating equal access to better health decisions worldwide.",
   },
  
   {

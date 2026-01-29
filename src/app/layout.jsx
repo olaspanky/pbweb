@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
         <div className="absolute bottom-40 left-1/3 w-72 h-72 bg-indigo-400/5 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-blue-400/5 rounded-full blur-3xl"></div>
       </div>
-      <body className="">{children}</body>
+      <body className="max-w-screen">{children}</body>
     </html>
   );
 }
