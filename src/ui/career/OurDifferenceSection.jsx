@@ -30,7 +30,7 @@ export default function CareersPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-12 lg:py-20">
+      <section className="container mx-auto px-4 py-12 lg:py-20 lg:px-16 text-center ">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Image */}
           <div className="order-2 lg:order-1">
@@ -89,7 +89,7 @@ export default function CareersPage() {
       </section>
 
       {/* Application Form Section */}
-      <section className="bg-gray-50 py-12 lg:py-20">
+      <section className="bg-gray-50 py-12 lg:py-20 lg:px-16  ">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* Form */}

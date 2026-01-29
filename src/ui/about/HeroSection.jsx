@@ -42,14 +42,7 @@ const slides = [
     ),
     subtitle: "To transform global healthcare through intelligent data, creating equal access to better health decisions worldwide.",
   },
-  {
-    image: HeroImage3,
-    title: (
-      <> 
-       Our <span className="text-brand-green">Commitment</span>{" "} to  <span className="text-brand-gold">Excellence</span> and Integrity 
-      </>
-    ),
-subtitle: "Innovation, Excellence, Customer-centricity, Integrity, Global perspective, Respect for people culture and environment", },
+ 
   {
     image: HeroImage4,
     title: (
@@ -59,6 +52,14 @@ subtitle: "Innovation, Excellence, Customer-centricity, Integrity, Global perspe
     ),
     subtitle: "Grounded in local realities and built on a global standard of excellence, we provide the clarity you need to win in dynamic markets.",
   },
+   {
+    image: HeroImage3,
+    title: (
+      <> 
+       Our <span className="text-brand-green">Commitment</span>{" "} to  <span className="text-brand-gold">Excellence</span> and Integrity 
+      </>
+    ),
+subtitle: "Innovation, Excellence, Customer-centricity, Integrity, Global perspective, Respect for people culture and environment", },
 ];
 
 export default function HeroSection() {
