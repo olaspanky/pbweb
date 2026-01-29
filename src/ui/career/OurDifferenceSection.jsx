@@ -183,7 +183,7 @@ export default function CareersPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 rounded-lg transition duration-200"
+                  className="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-4 rounded-lg transition duration-200"
                 >
                   Submit
                 </button>

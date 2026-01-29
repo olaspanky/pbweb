@@ -6,15 +6,15 @@ import Image from 'next/image';
 import WhitepapersMatter from '@/components/WhitepapersMatter';
 
 const NewTestimonialCard = ({ rating = 4, text, name, company }) => (
-  <div className="bg-white rounded-3xl shadow-xl overflow-hidden max-w-md mx-auto hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+  <div className="bg-white rounded-2xl shadow-lg overflow-hidden max-w-sm mx-auto hover:shadow-xl transition-shadow duration-300 flex flex-col">
     
-    {/* Top content */}
-    <div className="p-10 flex-1 relative z-10">
-      <div className="flex items-center gap-1 mb-6">
+    {/* Top content - reduced padding */}
+    <div className="p-6 flex-1 relative z-10">
+      <div className="flex items-center gap-1 mb-4">
         {[...Array(rating)].map((_, i) => (
           <svg
             key={`filled-${i}`}
-            className="w-7 h-7 text-green-500"
+            className="w-5 h-5 text-green-500"
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -25,7 +25,7 @@ const NewTestimonialCard = ({ rating = 4, text, name, company }) => (
         {[...Array(5 - rating)].map((_, i) => (
           <svg
             key={`empty-${i}`}
-            className="w-7 h-7 text-gray-300"
+            className="w-5 h-5 text-gray-300"
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -33,12 +33,12 @@ const NewTestimonialCard = ({ rating = 4, text, name, company }) => (
           </svg>
         ))}
 
-        <span className="ml-3 text-2xl font-bold text-gray-800">
+        <span className="ml-2 text-lg font-bold text-gray-800">
           {rating}/5
         </span>
       </div>
 
-      <p className="text-gray-700 text-lg leading-relaxed">{text}</p>
+      <p className="text-gray-700 text-sm leading-relaxed">{text}</p>
     </div>
 
     {/* Image section */}
@@ -48,14 +48,14 @@ const NewTestimonialCard = ({ rating = 4, text, name, company }) => (
         src={tst}
         alt="Mesh"
         width={500}
-        height={100}
+        height={80}
         className="w-full h-auto"
       />
 
       {/* Overlay content */}
-      <div className="absolute bottom-6 left-8 z-10 text-white p-5">
-        <p className="text-xl font-bold">{name}</p>
-        <p className="text-md opacity-90">{company}</p>
+      <div className="absolute bottom-4 left-6 z-10 text-white p-3">
+        <p className="text-base font-bold">{name}</p>
+        <p className="text-sm opacity-90">{company}</p>
       </div>
     </div>
   </div>
@@ -477,15 +477,15 @@ export default function ReportsPage() {
         </>
       )}
 
-      {/* Static Testimonials Section - No Scrolling */}
-      <section className="max-w-7xl mx-auto px-4 py-20 bg-[#FAFBFF]">
-        <div className="text-center mb-16">
+      {/* Static Testimonials Section - Reduced padding and spacing */}
+      <section className="max-w-7xl mx-auto px-4 py-16 bg-[#FAFBFF]">
+        <div className="text-center mb-12">
           <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">TESTIMONIALS</p>
-          <h2 className="text-4xl font-bold text-gray-900">What our customers say</h2>
+          <h2 className="text-3xl font-bold text-gray-900">What our customers say</h2>
         </div>
 
-        {/* Exactly 3 static testimonials in a responsive grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 p-24 max-w-7xl mx-auto">
+        {/* Smaller cards with reduced gap */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <NewTestimonialCard
             rating={4}
             text="Their detailed insights into state-level dynamics and financial trends provided crucial information that streamlined our project on maternal and neonatal products in Nigeria, significantly enhancing our strategic planning."

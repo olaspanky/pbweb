@@ -18,7 +18,7 @@ const slides = [
     title: (
       <>
        Transforming{" "}
-            <span className="text-brand-green">Healthcare</span> In Emerging Markets Through{" "} <span className="text-brand-gold">Intelligent Data</span>.
+            <span className="text-brand-green">Healthcare</span><br/> In Emerging Markets Through{" "} <span className="text-brand-gold">Intelligent Data</span>
       </>
     ),
     subtitle: "Unlocking Insights to Improve Access, Efficiency, and Outcomes",
@@ -28,7 +28,7 @@ const slides = [
     title: (
       <>
        Advancing <span className="text-brand-green">Healthcare </span> through{" "}
-            <span className="text-[#D3A352]">intelligence</span>. 
+            <span className="text-[#D3A352]">intelligence</span>
       </>
     ),
     subtitle: "Transforming Data into Global Impact Across Emerging Markets" ,
@@ -90,11 +90,11 @@ export default function HeroSection() {
       {/* Dynamic Hero Content - Vertically Centered */}
       <div className="relative z-20 h-screen flex items-center pt-24 lg:pt-32">
         <div className="max-w-[1440px] px-6 sm:px-12 md:px-16 lg:px-20 mx-auto w-full flex flex-col gap-6 md:gap-8">
-          <h1 className="text-grey-0 uppercase text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-snug md:leading-tight animate-fade-in w-full md:w-[97%]">
+          <h1 className="text-grey-0 uppercase text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-medium leading-snug md:leading-tight animate-fade-in w-full md:w-[97%]">
             {slides[selectedIndex].title}
           </h1>
 
-          <p className="text-grey-0 text-base sm:text-lg md:text-xl max-w-full md:max-w-2xl animate-fade-in delay-150">
+          <p className="text-grey-0 text-base sm:text-lg md:text-xl lg:text-[24px] max-w-full animate-fade-in delay-150">
             {slides[selectedIndex].subtitle}
           </p>
 

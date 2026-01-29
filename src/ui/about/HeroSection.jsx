@@ -17,7 +17,7 @@ const slides = [
     image: HeroImage5,
     title: (
       <>
-        Empowering <span className="text-brand-green">Healthcare</span> Success in{" "}
+        Empowering <span className="text-brand-green">Healthcare</span><br/> Success in{" "}
         <span className="text-brand-gold">Emerging Markets</span>
       </>
     ),
@@ -36,7 +36,7 @@ const slides = [
     image: HeroImage2,
     title: (
       <>
-        Advancing <span className="text-brand-green">Global Healthcare </span> With Insight and  <span className="text-brand-gold">Intelligence</span> 
+        Advancing <span className="text-brand-green">Global Healthcare </span><br/> With Insight and  <span className="text-brand-gold">Intelligence</span> 
        
       </>
     ),
@@ -115,11 +115,11 @@ export default function HeroSection() {
       {/* Dynamic Hero Content - Vertically Centered */}
       <div className="relative z-20 h-screen flex items-center pt-24 lg:pt-32">
         <div className="max-w-[1440px] px-6 sm:px-12 md:px-16 lg:px-20 mx-auto w-full flex flex-col gap-6 md:gap-8">
-          <h1 className="text-grey-0 uppercase text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-snug md:leading-tight animate-fade-in w-full md:w-[98%]">
+          <h1 className="text-grey-0 uppercase text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-medium leading-snug md:leading-tight animate-fade-in w-full md:w-[98%]">
             {slides[selectedIndex].title}
           </h1>
 
-          <p className="text-grey-0 text-base sm:text-lg md:text-xl  animate-fade-in delay-150 md:w-[70%]">
+          <p className="text-grey-0 text-base sm:text-lg md:text-xl lg:text-[24px] animate-fade-in delay-150 ">
             {slides[selectedIndex].subtitle}
           </p>
 
