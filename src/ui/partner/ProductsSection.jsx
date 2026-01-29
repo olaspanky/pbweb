@@ -45,7 +45,7 @@ export default function ProductsSection() {
   return (
     <section
       id="products"
-      className="max-w-[1440px] px-6 md:px-12 lg:px-18 mx-auto py-16 md:py-20 flex flex-col gap-12"
+      className="max-w-[1440px] px-6 md:px-12 lg:px-18 mx-auto w-[100vw] py-16 md:py-20 flex flex-col gap-12"
     >
       {/* Top Row */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-0">

@@ -68,14 +68,14 @@ export default function OurSolutions() {
   }, []);
 
   return (
-    <section id="solutions" className="max-w-[1440px] px-6 md:px-12 lg:px-18 mx-auto ">
+    <section id="solutions" className="max-w-[1440px] px-6 md:px-12 lg:px-18 mx-auto w-[100vw] ">
       <div className="bg-grey-100 px-6 md:px-12 lg:px-16 py-14 md:py-20 flex flex-col gap-10 md:gap-12">
         
         {/* Header */}
         <div className="flex flex-col gap-3 text-center md:text-left">
           <H2>Our Solutions</H2>
           <p className="text-grey-700 font-medium">
-PBR Life Sciences delivers evidence-based insights that help pharmaceutical companies make smarter decisions in emerging markets. By combining proprietary data platforms with deep local expertise, we translate complex market signals into clear answers what to launch, where to launch, and how to win.          </p>
+We deliver evidence-based insights that help pharmaceutical companies make smarter decisions in emerging markets. By combining proprietary data platforms with deep local expertise, we translate complex market signals into clear answers what to launch, where to launch, and how to win.          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">

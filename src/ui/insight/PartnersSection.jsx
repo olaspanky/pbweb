@@ -4,7 +4,7 @@ import VideoPlayer from "@/components/VideoPlayer";
 
 export default function PartnersSection() {
   return (
-    <section className="max-w-[1440px] px-6 md:px-12 lg:px-18 mx-auto py-16 md:py-20 grid grid-cols-1 lg:grid-cols-2 items-center gap-10 lg:gap-12">
+    <section className="max-w-[1440px] px-6 md:px-12 lg:px-18 mx-auto w-[100vw] py-16 md:py-20 grid grid-cols-1 lg:grid-cols-2 items-center gap-10 lg:gap-12">
       
       {/* Text Column */}
       <div className="flex flex-col items-start gap-6">

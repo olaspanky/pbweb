@@ -85,7 +85,7 @@ export default function HeroSection() {
             <span className="text-brand-green"> Future</span>
           </h1>
 
-          <p className="text-grey-0 text-base sm:text-lg md:text-xl lg:text-[24px]  animate-fade-in delay-150  ">
+          <p className="text-grey-0 text-base sm:text-lg md:text-xl lg:text-[24px]  animate-fade-in delay-150 lg:w-[65%] ">
             Access our expertly curated whitepaper covering trends, data, and forecasts across priority therapeutic <br/> areas empowering investors, healthcare leaders, and policymakers with actionable insights.
           </p>
 

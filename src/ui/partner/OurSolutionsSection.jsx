@@ -68,7 +68,7 @@ export default function OurSolutions() {
   }, []);
 
   return (
-    <section id="solutions" className="max-w-[1440px] px-6 md:px-12 lg:px-18 mx-auto ">
+    <section id="solutions" className="max-w-[1440px] px-6 md:px-12 lg:px-18 mx-auto w-[100vw] ">
       <div className="bg-grey-100 px-6 md:px-12 lg:px-16 py-14 md:py-20 flex flex-col gap-10 md:gap-12">
         
         {/* Header */}

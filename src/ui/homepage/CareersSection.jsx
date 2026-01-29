@@ -7,7 +7,7 @@ export default function CareersSection() {
   return (
     <section
       id="careers"
-      className="max-w-[1440px] px-6 md:px-12 lg:px-18 mx-auto pb-16 md:pb-20 grid grid-cols-1 lg:grid-cols-2 items-center gap-10 lg:gap-12"
+      className="max-w-[1440px] px-6 md:px-12 lg:px-18 mx-auto w-[100vw] pb-16 md:pb-20 grid grid-cols-1 lg:grid-cols-2 items-center gap-10 lg:gap-12"
     >
       {/* Image */}
       <figure className="rounded-xl overflow-hidden w-full aspect-square relative">

@@ -4,6 +4,7 @@ import { Search, ChevronDown } from 'lucide-react';
 import tst from "../../../public/images/assets/tst.png";
 import Image from 'next/image';
 import WhitepapersMatter from '@/components/WhitepapersMatter';
+import TestimonialsSection from '@/components/Testimonial';
 
 const NewTestimonialCard = ({ rating = 4, text, name, company }) => (
   <div className="bg-white rounded-2xl shadow-lg overflow-hidden max-w-sm mx-auto hover:shadow-xl transition-shadow duration-300 flex flex-col">
@@ -479,31 +480,7 @@ export default function ReportsPage() {
 
       {/* Static Testimonials Section - Reduced padding and spacing */}
       <section className="max-w-7xl mx-auto px-4 py-16 bg-[#FAFBFF]">
-        <div className="text-center mb-12">
-          <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">TESTIMONIALS</p>
-          <h2 className="text-3xl font-bold text-gray-900">What our customers say</h2>
-        </div>
-
-        {/* Smaller cards with reduced gap */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <NewTestimonialCard
-            rating={4}
-            text="Their detailed insights into state-level dynamics and financial trends provided crucial information that streamlined our project on maternal and neonatal products in Nigeria, significantly enhancing our strategic planning."
-            name="Azhee Akinrin"
-            company="consultant, Global Health and Development, Market Access Africa"          />
-
-          <NewTestimonialCard
-            rating={5}
-            text="PBR exceeded our expectations by providing credible, data-driven insights into therapeutics—offering a comprehensive understanding of market dynamics that has fundamentally transformed our decision-making process."
-          name="Chishamiso Mawoyo"
-            company="Senior Investment Officer, IFC"  />
-
-          <NewTestimonialCard
-            rating={4}
-            text="The Versus platform delivered substantial time and cost savings, enabling us to benchmark strategies effectively and navigate regulatory challenges with greater confidence."
-          name="Adeyanju Adedamola"
-            company="Merit Healthcare"  />
-        </div>
+      <TestimonialsSection/>
       </section>
     </div>
   );
