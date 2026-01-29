@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 const TestimonialCard = ({ quote, name, title, initials, variant }) => {
   const borderRadiusClass = variant === 'left' 
     ? 'rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px] rounded-bl-[100px] md:rounded-bl-[150px]'
-    : 'rounded-tl-[20px] rounded-tr-[100px] md:rounded-tr-[150px] rounded-br-[20px] rounded-bl-[20px]';
+    : 'rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px] rounded-bl-[100px] md:rounded-bl-[150px]';
 
   return (
     <div
