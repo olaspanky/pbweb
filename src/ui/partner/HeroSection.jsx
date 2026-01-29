@@ -55,7 +55,7 @@ export default function HeroSection() {
 BECOME A <span className="text-brand-green">DATA </span> <span className="text-brand-gold">PARTNER</span> WITH PBR LIFE SCIENCES          </h1>
 
           <p className="text-base sm:text-lg md:text-md lg:text-[24px] text-grey-0 max-w-5xl lg:w-[65%]">
-Join a growing network of forward-thinking pharmacies in <span className="text-sky-500 font-extrabold ">  Nigeria</span>, <span className="text-brand-green font-extrabold">  Ghana</span>, and <span className="text-brand-gold font-extrabold">  Kenya </span>sharing anonymized data to drive real-world insights and improve public health outcomes across Africa and beyond         </p>
+Join a growing network of forward-thinking pharmacies in Nigeria, Ghana, and  Kenya sharing anonymized data to drive real-world insights and improve public health outcomes across Africa and beyond         </p>
 
        
 
