@@ -5,26 +5,26 @@ import { motion } from 'framer-motion';
 
 const TestimonialCard = ({ rating, quote, name, title, initials, variant, index }) => {
   const borderRadiusClass = variant === 'left' 
-    ? 'rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px] rounded-bl-[150px]'
-    : 'rounded-tl-[20px] rounded-tr-[150px] rounded-br-[20px] rounded-bl-[20px]';
+    ? 'rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px] rounded-bl-[80px] md:rounded-bl-[150px]'
+    : 'rounded-tl-[20px] rounded-tr-[80px] md:rounded-tr-[150px] rounded-br-[20px] rounded-bl-[20px]';
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ 
         duration: 0.6, 
-        delay: index * 0.2,
+        delay: index * 0.15,
         ease: [0.25, 0.4, 0.25, 1]
       }}
       whileHover={{ 
         y: -8,
         transition: { duration: 0.3 }
       }}
-      className={`relative border-[3.33px] bg-transparent p-8 md:p-12 flex flex-col h-full ${borderRadiusClass}`}
+      className={`relative border-[2px] md:border-[3.33px] bg-transparent p-6 md:p-8 lg:p-12 flex flex-col h-full ${borderRadiusClass}`}
       style={{ 
-        gap: '32px',
+        gap: '24px',
         backdropFilter: 'blur(33.32px)',
         WebkitBackdropFilter: 'blur(33.32px)',
         borderImage: 'linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%) 1',
@@ -33,11 +33,11 @@ const TestimonialCard = ({ rating, quote, name, title, initials, variant, index 
     >
       {/* Star Rating */}
       <motion.div 
-        className="flex gap-1"
+        className="flex gap-0.5 md:gap-1"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: index * 0.2 + 0.3, duration: 0.5 }}
+        transition={{ delay: index * 0.15 + 0.2, duration: 0.5 }}
       >
         {[...Array(5)].map((_, starIndex) => (
           <motion.svg
@@ -46,11 +46,11 @@ const TestimonialCard = ({ rating, quote, name, title, initials, variant, index 
             whileInView={{ scale: 1, rotate: 0 }}
             viewport={{ once: true }}
             transition={{ 
-              delay: index * 0.2 + 0.4 + starIndex * 0.1,
+              delay: index * 0.15 + 0.3 + starIndex * 0.08,
               duration: 0.5,
               ease: [0.34, 1.56, 0.64, 1]
             }}
-            className={`h-7 w-7 ${
+            className={`h-5 w-5 md:h-6 lg:h-7 md:w-6 lg:w-7 ${
               starIndex < rating
                 ? 'fill-green-400 text-green-400'
                 : 'fill-none text-white/40'
@@ -71,33 +71,33 @@ const TestimonialCard = ({ rating, quote, name, title, initials, variant, index 
 
       {/* Quote */}
       <motion.p 
-        className="flex-1 text-base md:text-lg leading-relaxed text-white"
+        className="flex-1 text-sm md:text-base lg:text-lg leading-relaxed text-white"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: index * 0.2 + 0.5, duration: 0.6 }}
+        transition={{ delay: index * 0.15 + 0.4, duration: 0.6 }}
       >
         {quote}
       </motion.p>
 
       {/* Author Info */}
       <motion.div 
-        className="flex items-center gap-4"
+        className="flex items-center gap-3 md:gap-4"
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: index * 0.2 + 0.6, duration: 0.5 }}
+        transition={{ delay: index * 0.15 + 0.5, duration: 0.5 }}
       >
         <motion.div 
-          className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-white"
+          className="flex h-10 w-10 md:h-12 md:w-12 flex-shrink-0 items-center justify-center rounded-full bg-white"
           whileHover={{ scale: 1.1, rotate: 5 }}
           transition={{ duration: 0.3 }}
         >
-          <span className="text-lg font-bold text-blue-600">{initials}</span>
+          <span className="text-base md:text-lg font-bold text-blue-600">{initials}</span>
         </motion.div>
         <div>
-          <h4 className="text-base md:text-lg font-semibold text-white">{name}</h4>
-          <p className="text-sm md:text-base text-white/70">{title}</p>
+          <h4 className="text-sm md:text-base lg:text-lg font-semibold text-white">{name}</h4>
+          <p className="text-xs md:text-sm lg:text-base text-white/70">{title}</p>
         </div>
       </motion.div>
     </motion.div>
@@ -127,9 +127,9 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <div className="h-[60vh] min-h-[700px] bg-[#1A3A7B] flex items-center p-20">
+    <div className="min-h-[600px] md:min-h-[700px] bg-[#1A3A7B] flex items-center py-12 px-4 md:py-16 md:px-8 lg:p-20">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6 h-full max-h-[450px]">
+        <div className="grid grid-cols-1 gap-6 md:gap-4 lg:grid-cols-2 lg:gap-6">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} {...testimonial} index={index} />
           ))}
