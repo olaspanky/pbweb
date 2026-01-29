@@ -129,7 +129,7 @@ const TestimonialsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 px-4"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-[44px] font-light text-white mb-4">
             What Our Clients Say
           </h2>
           <p className="text-white/70 text-lg">

@@ -76,7 +76,7 @@ const WhitepapersMatter = () => {
     >
       <div className="max-w-7xl mx-auto w-full">
         <motion.h2
-          className="text-4xl sm:text-5xl lg:text-[50px] text-center font-light tracking-wide text-[#2B4886] mb-16"
+          className="text-4xl sm:text-5xl lg:text-[44px] text-center font-light tracking-wide text-[#2B4886] mb-16"
           variants={titleVariants}
           initial="hidden"
           animate={isSectionInView ? 'visible' : 'hidden'}
