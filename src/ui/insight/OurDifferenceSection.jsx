@@ -47,7 +47,7 @@ const NewTestimonialCard = ({ rating = 4, text, name, company }) => (
       <Image
         src={tst}
         alt="Mesh"
-        width={800}
+        width={500}
         height={100}
         className="w-full h-auto"
       />
@@ -485,7 +485,7 @@ export default function ReportsPage() {
         </div>
 
         {/* Exactly 3 static testimonials in a responsive grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 p-24 max-w-7xl mx-auto">
           <NewTestimonialCard
             rating={4}
             text="Their detailed insights into state-level dynamics and financial trends provided crucial information that streamlined our project on maternal and neonatal products in Nigeria, significantly enhancing our strategic planning."

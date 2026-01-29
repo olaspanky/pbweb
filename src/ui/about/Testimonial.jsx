@@ -41,7 +41,7 @@ const Testimonial = () => {
 
             {/* Testimonial Text */}
             <p className="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed">
-              "In this testimonial, the Dexa team shares how they utilize, our SaaS/DaaS platform, to gain actionable insights from pharmaceutical market data enabling their plan into pharmaceutical manufacturing in Nigera and also making other smarter sales strategies."
+              "In this testimonial, the Dexa team explains how our DaaS platform helped them unlock actionable insights about pharmaceutical market insights, guiding their entry into manufacturing in Nigera and informing smarter sales strategies."
             </p>
 
             {/* Author */}

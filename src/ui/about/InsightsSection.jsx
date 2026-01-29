@@ -13,11 +13,8 @@ export default function InsightsSection() {
     >
       {/* Heading */}
       <div className="flex flex-col gap-3 items-center text-center">
-        <H2>Navigating Africa's Healthcare Evolution</H2>
-        <p className="text-grey-700 font-medium w-[90%] md:w-[70%]">
-          Gain from 200% revenue-backed insights across 10,958 SKUs and
-          Sub-Saharan Africa's dynamic pharmaceutical landscape.
-        </p>
+        <H2>News</H2>
+       
       </div>
 
       {/* Responsive Grid */}
