@@ -64,6 +64,15 @@ export default function HeroSection() {
   We combine proprietary real-world data, purpose-built platforms, and proven on-the-ground execution to turn complex emerging markets into predictable growth engines.
 </p>
 
+
+ <div className="flex flex-wrap gap-5 items-center  " >
+      {/* Solid Blue Button */}
+      <button className="px-8 py-3 bg-sky-500 text-xl text-white font-semibold rounded-lg hover:bg-sky-600 transition-colors duration-200 shadow-sm">
+        Learn More
+      </button>
+
+   
+    </div>
          
                 
         </div>
