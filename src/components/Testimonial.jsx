@@ -76,7 +76,7 @@ const TestimonialsSection = () => {
       title: "Ex Sanofi Nigeria - Country Revenue and Pricing Manager",
       initials: "TJ",
       variant: "left"
-    }
+    },
     {
       quote: "PBR exceeded our expectations by providing credible, data-driven insights into therapeutics, offering a comprehensive understanding of market dynamics that has fundamentally transformed our decision-making process.",
       name: "Chishamiso Mawoyo",
