@@ -27,7 +27,7 @@ const slides = [
     image: HeroImage1,
     title: (
       <>
-       To Pioneer the Future of <br/> <span className="text-brand-green"> Healthcare Intelligence </span> 
+       Pioneering the Future of <br/> <span className="text-brand-green"> Healthcare Intelligence </span> 
       </>
     ),
     subtitle: "Transforming Data into Global Impact Across Emerging Markets" ,
