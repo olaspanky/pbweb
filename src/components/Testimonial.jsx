@@ -77,6 +77,41 @@ const TestimonialsSection = () => {
       initials: "TJ",
       variant: "left"
     }
+    {
+      quote: "PBR exceeded our expectations by providing credible, data-driven insights into therapeutics, offering a comprehensive understanding of market dynamics that has fundamentally transformed our decision-making process.",
+      name: "Chishamiso Mawoyo",
+      title: "Senior Investment Officer, IFC",
+      initials: "CM",
+      variant: "left"
+    },
+    {
+      quote: "Their detailed insights into state-level dynamics and financial trends provided crucial information that streamlined our project on maternal and neonatal products in Nigeria, significantly enhancing our strategic planning.",
+      name: "Azhee Akinrin",
+      title: "Consultant, Global Health and Development, Market Access Africa",
+      initials: "AA",
+      variant: "right"
+    },
+    {
+      quote: "PBR's data solutions empowered us to make strategic decisions that directly impacted product launches and market segmentation. By providing detailed SKU analysis and granular market insights, PBR enabled us to successfully launch a new product in 2024.",
+      name: "Yimika Oguns",
+      title: "Emzor",
+      initials: "YO",
+      variant: "left"
+    },
+    {
+      quote: "The Versus platform delivered substantial time and cost savings, enabling us to benchmark strategies effectively and navigate regulatory challenges with greater confidence.",
+      name: "Adeyanju Adedamola",
+      title: "Merit Healthcare",
+      initials: "AD",
+      variant: "right"
+    },
+    {
+      quote: "Partnering with PBR Life Sciences on an advanced pricing modeling project was a game-changer for Sanofi. By leveraging real-world pharmacy sales data, we developed a data-driven pricing strategy that not only boosted profitability but also ensured broader patient access to essential medicines.",
+      name: "Tolulope Jagun",
+      title: "Ex Sanofi Nigeria - Country Revenue and Pricing Manager",
+      initials: "TJ",
+      variant: "left"
+    }
   ];
 
   return (
