@@ -54,7 +54,7 @@ const DifferentiatingEdge = () => {
   };
 
   return (
-    <section className="relative">
+    <section className="relative px-5">
       {/* Background wrapper with inline style and overlay */}
       <div className="relative max-w-[1440px] mx-auto">
         {/* Background image */}
@@ -75,8 +75,8 @@ const DifferentiatingEdge = () => {
         <div className="relative z-10 px-6 sm:px-12 lg:px-16 py-20">
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-              Our Differentiating Edge: Connected Intelligence for Emerging Markets
+            <h2 className="text-3xl sm:text-4xl md:text-[36px] font-bold text-white mb-6">
+              Our Differentiating Edge: Connected Intelligence for<br/>Emerging Markets
             </h2>
             <p className="text-lg sm:text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
             </p>

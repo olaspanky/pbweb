@@ -66,7 +66,7 @@ export default function HeroSection() {
 </div>
           
 
-          <Button content={{ to: "/demo", label: "Request A Demo" }} className="uppercase w-48" />
+          <Button content={{ to: "/contact", label: "Request A Demo" }} className="uppercase w-60" />
         </div>
       </div>
     </header>

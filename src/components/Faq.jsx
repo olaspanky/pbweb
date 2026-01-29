@@ -36,8 +36,8 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="max-w-7xl lg:mx-auto pxx-2 2xl:px-4 lg:py-9 2xl:py-24 px-3 my-3">
-      <div className="grid lg:grid-cols-2 lg:gap">
+    <div className="max-w-7xl lg:mx-auto pxx-2 2xl:px-4 lg:py-9 2xl:py-24  my-3 px-5">
+      <div className="grid lg:grid-cols-2 lg:gap-3">
         {/* Left Column - Title and Description */}
         <div className="">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">

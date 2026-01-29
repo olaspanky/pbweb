@@ -63,7 +63,7 @@ The Prescriber’s Journey Revealed          </p>
           <p className="text-base sm:text-lg md:text-lg text-grey-0 max-w-2xl">
 Connect diagnosis to treatment with unparalleled clarity.          </p>
 </div>
-          <Button content={{ to: "/demo", label: "Request A Demo" }} className="uppercase w-48" />
+          <Button content={{ to: "/contact", label: "Request A Demo" }} className="uppercase w-60" />
         </div>
       </div>
     </header>

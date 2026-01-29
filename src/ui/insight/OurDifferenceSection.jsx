@@ -38,7 +38,7 @@ const NewTestimonialCard = ({ rating = 4, text, name, company }) => (
         </span>
       </div>
 
-      <p className="text-gray-700 text-sm leading-relaxed">{text}</p>
+      <p className="text-gray-700 text-lg leading-relaxed">{text}</p>
     </div>
 
     {/* Image section */}
@@ -49,7 +49,7 @@ const NewTestimonialCard = ({ rating = 4, text, name, company }) => (
         alt="Mesh"
         width={500}
         height={80}
-        className="w-full h-auto"
+        className="w-full h-auto mt-[-20px]"
       />
 
       {/* Overlay content */}
