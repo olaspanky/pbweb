@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import img1 from "../../../public/images/cr1.png"
 export default function CareersPage() {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -35,7 +35,7 @@ export default function CareersPage() {
           {/* Image */}
           <div className="order-2 lg:order-1">
             <img 
-              src="./images/cr1.png" 
+              src="/images/cr1.png" 
               alt="Team collaboration" 
               className="w-full h-auto rounded-lg shadow-lg"
             />
@@ -193,7 +193,7 @@ export default function CareersPage() {
             {/* Image */}
             <div className="order-first lg:order-last">
               <img 
-              src="./images/cr2.png" 
+              src="/images/cr2.png" 
                 alt="Team celebration" 
                 className="w-full h-auto rounded-lg shadow-lg"
               />

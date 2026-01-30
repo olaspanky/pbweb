@@ -221,7 +221,7 @@ export default function ContactFormSection() {
       { name: 'Last Name', value: formData.Last_Name }, // Zoho expects "Last Name" with space
       { name: 'Country', value: formData.Country },
       { name: 'Phone', value: formData.Phone },
-      { name: 'Lead Source', value: formData.Lead_Source },
+      { name: 'Lead Source', value: "contact page" },
       { name: 'First Name', value: formData.First_Name }, // Zoho expects "First Name" with space
       { name: 'Description', value: formData.Description },
     ];
@@ -455,22 +455,7 @@ export default function ContactFormSection() {
             </div>
 
             {/* Lead Source Dropdown */}
-            <div className="relative">
-              <select
-                name="Lead_Source"
-                value={formData.Lead_Source}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent appearance-none"
-              >
-                {leadSources.map((source) => (
-                  <option key={source} value={source} className="bg-blue-900 text-white">
-                    {source}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/70 pointer-events-none" />
-            </div>
-
+          
             <textarea
               name="Description"
               placeholder="Message"

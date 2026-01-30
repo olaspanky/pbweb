@@ -67,10 +67,11 @@ export default function HeroSection() {
 
  <div className="flex flex-wrap gap-5 items-center  " >
       {/* Solid Blue Button */}
+      <a href="/contact">
       <button className="px-8 py-3 bg-sky-500 text-xl text-white font-semibold rounded-lg hover:bg-sky-600 transition-colors duration-200 shadow-sm">
         Learn More
       </button>
-
+</a>
    
     </div>
          

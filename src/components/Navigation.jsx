@@ -54,20 +54,20 @@ export default function Navigation({ className }) {
             </p>
           </Link>
 
-          <div className="flex items-center gap-4">
-            <a href="https://www.facebook.com/PBR-Life-Sciences-61554007611436">
-              <Facebook />
-            </a>
-            <a href="https://ng.linkedin.com/company/pbr-life-sciences">
-              <Linkedin />
-            </a>
-            <a href="https://www.instagram.com/pbrlifesciences/?hl=en">
-              <Instagram />
-            </a>
-            <a href="https://x.com/pbrlifesciences">
-              <Twitter />
-            </a>
-          </div>
+            <div className="flex items-center gap-6">
+  <a href="https://www.facebook.com/PBR-Life-Sciences-61554007611436" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-70 transition" target="_blank">
+    <Facebook />
+  </a>
+  <a href="https://ng.linkedin.com/company/pbr-life-sciences" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:opacity-70 transition" target="_blank">
+    <Linkedin />
+  </a>
+  <a href="https://www.instagram.com/pbrlifesciences/?hl=en" rel="noopener noreferrer" aria-label="Instagram" className="hover:opacity-70 transition" target="_blank">
+    <Instagram />
+  </a>
+  <a href="https://x.com/pbrlifesciences" rel="noopener noreferrer" aria-label="Twitter" className="hover:opacity-70 transition" target="_blank">
+    <Twitter />
+  </a>
+</div>
         </div>
       </nav>
 

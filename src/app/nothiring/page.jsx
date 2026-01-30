@@ -21,13 +21,13 @@ export default function NotHiringPage() {
   }));
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-950 overflow-hidden flex items-center justify-center">
+    <div className="relative min-h-screen bg-[#112261] overflow-hidden flex items-center justify-center">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {floatingElements.map((el) => (
           <div
             key={el.id}
-            className="absolute rounded-full bg-gradient-to-br from-purple-400/20 to-blue-400/20 blur-xl"
+            className="absolute rounded-full bg-[#112261] blur-xl"
             style={{
               width: `${el.size}px`,
               height: `${el.size}px`,
@@ -114,7 +114,7 @@ export default function NotHiringPage() {
         </div>
 
         {/* Optional: Add your careers email */}
-        <p className="mt-12 text-purple-300 text-lg">
+        <p className="mt-12 text-[#112261] text-lg">
           Send applications to: <a href="mailto:careers@yourcompany.com" className="underline hover:text-white transition">marketanalytics@pbrinsight.com</a>
         </p>
       </div>
