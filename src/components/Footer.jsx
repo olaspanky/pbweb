@@ -7,8 +7,8 @@ export default function Footer() {
 
   return (
     <footer className="py-12 md:py-20 bg-brand-dark-blue relative overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-18">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12 mb-10 md:mb-12">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-8">
+        <div className="flex justify-between gap-20 mb-10 md:mb-12">
           {/* Column 4 Navigation Columns */}
           <div className="flex flex-col gap-4 text-grey-0 font-medium text-sm md:text-base">
             <Link href="/about" className="hover:underline transition">About Us</Link>
@@ -42,14 +42,7 @@ export default function Footer() {
           {/* Contact & Socials Column */}
           <div className="flex flex-col gap-8 text-grey-0 font-medium text-sm md:text-base">
             <p className="leading-relaxed">
-              Reach us at{" "}
-              <Link 
-                href="mailto:marketanalytics@pbrinsight.com" 
-                className="hover:underline font-semibold transition"
-              >
-                marketanalytics@pbrinsight.com
-              </Link>{" "}
-              or through our online contact form.
+              Reach us at marketanalytics@pbrinsight.com or through our online contact form.
             </p>
 
           <div className="flex items-center gap-6">

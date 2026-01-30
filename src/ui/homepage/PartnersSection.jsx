@@ -8,7 +8,7 @@ export default function PartnersSection() {
       
       {/* Text Column */}
       <div className="flex flex-col items-start gap-6">
-        <H2>Become a Data Partner with us Today!</H2>
+        <H2>Become a Data Partner with us Today</H2>
 
         <p className="text-base md:text-lg text-justify text-grey-700 font-medium">
           Join over 1,000+ pharmacies in Nigeria, Ghana, and Kenya already

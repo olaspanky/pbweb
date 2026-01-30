@@ -56,7 +56,7 @@ export default function ProductsSection() {
         <div className="flex flex-col gap-3 w-full md:w-[70%]">
           <H2>Data Solutions for Global Pharma Future</H2>
 
-          <p className="text-grey-700 font-medium w-full md:w-[80%] leading-relaxed">
+          <p className="text-grey-700 font-medium w-full leading-relaxed">
             Leverage our proprietary platforms to navigate 78 therapy areas and
             a $45.3B global antibiotics market with confidence.
           </p>
