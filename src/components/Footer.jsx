@@ -8,7 +8,9 @@ export default function Footer() {
   return (
     <footer className="py-12 md:py-20 bg-brand-dark-blue relative overflow-hidden">
       <div className="max-w-[1440px] mx-auto ">
-        <div className="flex justify-between gap-20 mb-10 md:mb-12 px-16">
+        <div className="flex  gap-12 mb-10 md:mb-12 p-3 lg:px-16">
+
+          <div className="flex w-8/12 justify-between"> 
           {/* Column 4 Navigation Columns */}
           <div className="flex flex-col gap-4 text-grey-0 font-medium text-sm md:text-base">
             <Link href="/about" className="hover:underline transition">About Us</Link>
@@ -39,10 +41,12 @@ export default function Footer() {
             {/* Add more solution links here if needed */}
           </div>
 
+          </div>
+
           {/* Contact & Socials Column */}
           <div className="flex flex-col gap-8 text-grey-0 font-medium text-sm md:text-base">
             <p className="leading-relaxed">
-              Reach us at marketanalytics@pbrinsight.com or through our online contact form.
+              Reach us at marketanalytics@pbrinsight.com <br/> or through our online contact form.
             </p>
 
           <div className="flex items-center gap-6">
@@ -66,7 +70,7 @@ export default function Footer() {
         <hr className="border-grey-0/30 my-8" />
 
         {/* Bottom Section */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 text-grey-0 font-medium text-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 text-grey-0 font-medium text-sm  p-3 lg:px-16">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
             <p>©{year} PBR Life Sciences.</p>
             <div className="flex items-center gap-3 sm:gap-4 text-sm">

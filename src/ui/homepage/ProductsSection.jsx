@@ -53,7 +53,7 @@ export default function ProductsSection() {
     >
       {/* ======================== TOP SECTION ======================== */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-0">
-        <div className="flex flex-col gap-3 w-full md:w-[70%]">
+        <div className="flex flex-col gap-3 w-full ">
           <H2>Data Solutions for Global Pharma Future</H2>
 
           <p className="text-grey-700 font-medium w-full leading-relaxed">
