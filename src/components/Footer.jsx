@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="py-12 md:py-20 bg-brand-dark-blue relative overflow-hidden">
       <div className="max-w-[1440px] mx-auto ">
-        <div className="flex  gap-12 mb-10 md:mb-12 p-3 lg:px-16">
+        <div className="flex  gap-3 lg:gap-12 mb-10 md:mb-12 p-3 lg:px-16">
 
           <div className="flex w-8/12 justify-between"> 
           {/* Column 4 Navigation Columns */}
