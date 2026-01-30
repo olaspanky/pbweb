@@ -7,8 +7,8 @@ export default function Footer() {
 
   return (
     <footer className="py-12 md:py-20 bg-brand-dark-blue relative overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-8">
-        <div className="flex justify-between gap-20 mb-10 md:mb-12">
+      <div className="max-w-[1440px] mx-auto ">
+        <div className="flex justify-between gap-20 mb-10 md:mb-12 px-16">
           {/* Column 4 Navigation Columns */}
           <div className="flex flex-col gap-4 text-grey-0 font-medium text-sm md:text-base">
             <Link href="/about" className="hover:underline transition">About Us</Link>
